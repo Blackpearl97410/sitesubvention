@@ -1,0 +1,266 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Tokens CSS ─────────────────────────────────────────
+   Injectés depuis app/layout.tsx via next/font (var names)
+   et définis ici pour les valeurs non gérées par Tailwind
+──────────────────────────────────────────────────────── */
+:root {
+  /* Couleurs */
+  --white:       #F8F8F5;
+  --paper:       #F1F2EE;
+  --track-bg:    #F5F6F1;
+  --surface:     rgba(255, 255, 254, 0.97);
+  --surface-2:   rgba(249, 250, 246, 0.98);
+  --black:       #121212;
+  --ink:         #161614;
+  --soft:        #565650;
+  --dim:         #85857E;
+  --rule:        #D0D2CA;
+  --rule-dark:   #BABDB4;
+  --accent:      #C85232;
+  --accent-dim:  rgba(200, 82, 50, 0.05);
+  --accent-glow: rgba(200, 82, 50, 0.14);
+
+  /* Layout — utilisées via style={{ }} dans les composants */
+  --label-w: 160px;
+  --nav-h:   68px;
+  --ruler-h: 28px;
+
+  /* Typographie fluide — utilisées via style={{ fontSize: 'var(--fs-hero)' }} */
+  --fs-hero: clamp(4rem, 8.5vw, 9rem);
+  --fs-h2:   clamp(1.75rem, 3.5vw, 3.5rem);
+  --fs-h3:   clamp(1.25rem, 2.2vw, 1.875rem);
+  --fs-stat: clamp(3.5rem, 5.5vw, 6rem);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-barlow), Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-barlow), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(circle at top right, rgba(200, 82, 50, 0.08), transparent 18%),
+    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(200, 82, 50, 0.18);
+  color: var(--black);
+}
+
+main {
+  position: relative;
+}
+
+main::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.025), transparent 12%),
+    radial-gradient(circle at 20% 18%, rgba(200, 82, 50, 0.04), transparent 14%);
+  z-index: 0;
+}
+
+main > * {
+  position: relative;
+  z-index: 1;
+}
+
+.theme-dark .text-black { color: var(--black) !important; }
+.theme-dark .text-ink { color: var(--ink) !important; }
+.theme-dark .text-soft { color: var(--soft) !important; }
+.theme-dark .text-dim { color: var(--dim) !important; }
+.theme-dark .border-rule { border-color: var(--rule) !important; }
+.theme-dark .border-rule-dark { border-color: var(--rule-dark) !important; }
+.theme-dark .border-black { border-color: var(--black) !important; }
+.theme-dark .hover\:text-black:hover { color: var(--black) !important; }
+.theme-dark .hover\:border-black:hover { border-color: var(--black) !important; }
+.theme-dark .group:hover .group-hover\:text-white { color: var(--black) !important; }
+
+.theme-dark a:focus-visible,
+.theme-dark button:focus-visible,
+.theme-dark textarea:focus-visible,
+.theme-dark input:focus-visible {
+  outline: 2px solid rgba(243, 241, 234, 0.72);
+  outline-offset: 2px;
+}
+
+/* Rehausse globale de la micro-typographie DAW / éditoriale */
+.theme-dark .text-\[0\.375rem\] {
+  font-size: 0.625rem !important;
+  line-height: 1.45 !important;
+}
+
+.theme-dark .text-\[0\.4rem\] {
+  font-size: 0.6875rem !important;
+  line-height: 1.45 !important;
+}
+
+.theme-dark .text-\[0\.4375rem\] {
+  font-size: 0.75rem !important;
+  line-height: 1.45 !important;
+}
+
+.theme-dark .text-\[0\.5rem\] {
+  font-size: 0.75rem !important;
+  line-height: 1.45 !important;
+}
+
+.theme-dark .text-\[0\.5625rem\] {
+  font-size: 0.8125rem !important;
+  line-height: 1.45 !important;
+}
+
+.theme-dark .text-\[0\.625rem\] {
+  font-size: 0.875rem !important;
+  line-height: 1.4 !important;
+}
+
+.theme-dark .tracking-\[0\.1em\],
+.theme-dark .tracking-\[0\.12em\],
+.theme-dark .tracking-\[0\.14em\],
+.theme-dark .tracking-\[0\.16em\],
+.theme-dark .tracking-\[0\.18em\] {
+  letter-spacing: 0.12em !important;
+}
+
+/* Playhead ruler */
+@keyframes playhead-move {
+  from { left: 0%; }
+  to   { left: 100%; }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+@keyframes animate-first {
+  0% { transform: translateY(-10%) rotate(0deg); }
+  50% { transform: translateY(10%) rotate(180deg); }
+  100% { transform: translateY(-10%) rotate(360deg); }
+}
+
+@keyframes animate-second {
+  0% { transform: translateX(-12%) translateY(4%) rotate(0deg); }
+  50% { transform: translateX(8%) translateY(-6%) rotate(180deg); }
+  100% { transform: translateX(-12%) translateY(4%) rotate(360deg); }
+}
+
+@keyframes animate-third {
+  0% { transform: translateX(10%) translateY(-4%) rotate(0deg); }
+  50% { transform: translateX(-8%) translateY(6%) rotate(180deg); }
+  100% { transform: translateX(10%) translateY(-4%) rotate(360deg); }
+}
+
+@keyframes animate-fourth {
+  0% { transform: translateX(-6%) translateY(-10%) rotate(0deg); }
+  50% { transform: translateX(7%) translateY(10%) rotate(180deg); }
+  100% { transform: translateX(-6%) translateY(-10%) rotate(360deg); }
+}
+
+@keyframes animate-fifth {
+  0% { transform: translateX(8%) translateY(8%) rotate(0deg); }
+  50% { transform: translateX(-10%) translateY(-10%) rotate(180deg); }
+  100% { transform: translateX(8%) translateY(8%) rotate(360deg); }
+}
+
+.animate-first { animation: animate-first 18s ease-in-out infinite; }
+.animate-second { animation: animate-second 22s ease-in-out infinite; }
+.animate-third { animation: animate-third 26s ease-in-out infinite; }
+.animate-fourth { animation: animate-fourth 20s ease-in-out infinite; }
+.animate-fifth { animation: animate-fifth 28s ease-in-out infinite; }
+
+@keyframes contact-grid-drift {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 220px -140px, -120px 180px; }
+}
+
+@keyframes contact-scan-move {
+  0% { opacity: 0; transform: translateY(-48px); }
+  20% { opacity: 0.55; }
+  100% { opacity: 0; transform: translateY(260px); }
+}
+
+@keyframes contact-eq-pulse {
+  0%, 100% { transform: scaleY(0.38); opacity: 0.45; }
+  45% { transform: scaleY(1); opacity: 0.95; }
+}
+
+@keyframes contact-plate-shift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.42; }
+  50% { transform: translate3d(-10px, 8px, 0) rotate(6deg); opacity: 0.78; }
+}
+
+.contact-grid {
+  background-image:
+    linear-gradient(90deg, rgba(200, 82, 50, 0.18) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 56px 56px, 112px 112px;
+  animation: contact-grid-drift 20s linear infinite;
+}
+
+.contact-scan {
+  animation: contact-scan-move 7s ease-in-out infinite;
+}
+
+.contact-eq-bar {
+  transform-origin: bottom;
+  animation: contact-eq-pulse 2.8s ease-in-out infinite;
+}
+
+.contact-plate {
+  animation: contact-plate-shift 12s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-grid,
+  .contact-scan,
+  .contact-eq-bar,
+  .contact-plate {
+    animation: none !important;
+  }
+}
+
+
+/* ─── Responsive — Mobile ────────────────────────────────
+   Strategy V1 : on masque les labels DAW sur mobile
+   et on adapte les tailles de police.
+   Le layout DAW horizontal est optimisé desktop.
+──────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --label-w:  0px;
+    --fs-hero:  clamp(2.5rem, 10vw, 5rem);
+    --fs-h2:    clamp(1.5rem, 6vw, 2.5rem);
+    --fs-stat:  clamp(2rem, 8vw, 4rem);
+  }
+
+  /* Masquer la colonne label quand --label-w = 0 */
+  [style*="--label-w"] {
+    overflow: hidden;
+  }
+
+  /* Permettre le scroll horizontal sur les sections si nécessaire */
+  section {
+    overflow-x: hidden;
+  }
+}
