@@ -15,6 +15,8 @@ Ces valeurs sont aussi déclarées dans `netlify.toml`.
 - `RESEND_API_KEY` : clé API Resend utilisée par le formulaire de contact.
 - `RESEND_FROM_EMAIL` : adresse expéditrice vérifiée dans Resend.
 - `CONTACT_TO_EMAIL` : adresse de réception des demandes.
+- `PUBLIC_CONTACT_EMAIL` : adresse affichée dans les messages d'erreur et utilisée comme réponse aux emails automatiques.
+- `RESEND_AUTO_REPLY` : `true` pour envoyer un accusé de réception automatique, `false` pour le désactiver.
 
 ## Note Next.js
 
