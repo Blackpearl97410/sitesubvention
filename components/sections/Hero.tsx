@@ -1,6 +1,7 @@
 'use client'
+import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Ruler from '@/components/daw/Ruler'
 import Magnetic from '@/components/motion/Magnetic'
@@ -10,15 +11,32 @@ import RollingText from '@/components/motion/RollingText'
 import { Reveal, StaggerGroup, StaggerItem } from '@/components/motion/Reveal'
 import Track from '@/components/daw/Track'
 import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton'
-import { ShaderAnimation } from '@/components/visual/ShaderAnimation'
 import { motionTiming } from '@/lib/tokens'
 import { territoryLabel } from '@/lib/site'
 
 const tags = ['CNM', 'SPEDIDAM', 'ADAMI', 'SACEM', 'DAC', 'Régions · État', 'Collectivités']
 
+const ShaderAnimation = dynamic(
+  () => import('@/components/visual/ShaderAnimation').then((mod) => mod.ShaderAnimation),
+  {
+    ssr: false,
+    loading: () => (
+      <div
+        className="absolute inset-0 h-full w-full"
+        aria-hidden="true"
+        style={{
+          background:
+            'radial-gradient(circle at 68% 35%, rgba(200,82,50,0.2), transparent 26%), linear-gradient(135deg, rgba(18,18,18,0), rgba(200,82,50,0.08))',
+        }}
+      />
+    ),
+  }
+)
+
 export default function Hero() {
   const waveRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
+  const [shaderReady, setShaderReady] = useState(false)
 
   useEffect(() => {
     const el = waveRef.current
@@ -30,6 +48,22 @@ export default function Hero() {
       bar.style.cssText = `width:2px;height:${h}px;background:var(--accent);border-radius:1px;opacity:0.18;flex-shrink:0`
       el.appendChild(bar)
     }
+  }, [])
+
+  useEffect(() => {
+    const loadShader = () => setShaderReady(true)
+    const browserWindow = window as Window & {
+      requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number
+      cancelIdleCallback?: (id: number) => void
+    }
+
+    if (browserWindow.requestIdleCallback && browserWindow.cancelIdleCallback) {
+      const idleId = browserWindow.requestIdleCallback(loadShader, { timeout: 1600 })
+      return () => browserWindow.cancelIdleCallback?.(idleId)
+    }
+
+    const timeoutId = globalThis.setTimeout(loadShader, 900)
+    return () => globalThis.clearTimeout(timeoutId)
   }, [])
 
   return (
@@ -71,7 +105,7 @@ export default function Hero() {
                   filter: 'blur(0.2px)',
                 }}
               >
-                <ShaderAnimation />
+                {shaderReady ? <ShaderAnimation /> : null}
               </div>
 
               <div

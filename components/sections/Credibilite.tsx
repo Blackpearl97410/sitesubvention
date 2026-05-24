@@ -15,15 +15,15 @@ const creds = [
 ]
 
 const logos = [
-  { name: 'CNM', src: '/logos-institutions/cnm.svg' },
-  { name: 'SPEDIDAM', src: '/logos-institutions/spedidam.svg' },
-  { name: 'ADAMI', src: '/logos-institutions/adami.svg' },
-  { name: 'SACEM', src: '/logos-institutions/sacem.svg' },
-  { name: 'SCPP', src: '/logos-institutions/scpp.svg' },
-  { name: 'SPPF', src: '/logos-institutions/sppf.svg' },
-  { name: 'DAC', src: '/logos-institutions/dac.svg' },
-  { name: 'Région', src: '/logos-institutions/region.svg' },
-  { name: 'Collectivité', src: '/logos-institutions/collectivite.svg' },
+  { name: 'CNM', src: '/logos-institutions/optimized/cnm.png' },
+  { name: 'SPEDIDAM', src: '/logos-institutions/optimized/spedidam.png' },
+  { name: 'ADAMI', src: '/logos-institutions/optimized/adami.png' },
+  { name: 'SACEM', src: '/logos-institutions/optimized/sacem.png' },
+  { name: 'SCPP', src: '/logos-institutions/optimized/scpp.png' },
+  { name: 'SPPF', src: '/logos-institutions/optimized/sppf.png' },
+  { name: 'DAC', src: '/logos-institutions/optimized/dac.png' },
+  { name: 'Région', src: '/logos-institutions/optimized/region.png' },
+  { name: 'Collectivité', src: '/logos-institutions/optimized/collectivite.png' },
 ]
 
 function CountUp({ target, suffix = '' }: { target: number; suffix?: string }) {
