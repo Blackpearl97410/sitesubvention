@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Barlow_Condensed, Barlow, Space_Mono } from 'next/font/google'
 import MotionProvider from '@/components/motion/MotionProvider'
 import JsonLd from '@/components/seo/JsonLd'
+import { seoKeywords, siteConfig } from '@/lib/seo'
 import { colors, layout } from '@/lib/tokens'
 import './globals.css'
 
@@ -27,19 +28,27 @@ const spaceMono = Space_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://dossier-studio.com'),
+  metadataBase: new URL(siteConfig.url),
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.author }],
+  creator: siteConfig.author,
+  publisher: siteConfig.name,
+  category: 'Business services',
   title: {
-    default: 'Dossier Studio — Montage de dossiers · Secteur musical francophone',
+    default: siteConfig.title,
     template: '%s | Dossier Studio',
   },
-  description:
-    "Accompagnement au montage de dossiers d'aides et de subventions pour labels, éditeurs, producteurs, studios et artistes francophones. CNM, SPEDIDAM, ADAMI, SACEM, régions et plus.",
+  description: siteConfig.description,
+  keywords: seoKeywords,
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: '/icon.svg',
   },
   openGraph: {
-    title: 'Dossier Studio — De l\'idée artistique au dossier finançable',
-    description: "Accompagnement au montage de dossiers d'aides et de subventions pour le secteur musical francophone.",
+    title: siteConfig.title,
+    description: siteConfig.description,
     url: '/',
     siteName: 'Dossier Studio',
     locale: 'fr_FR',
@@ -47,8 +56,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dossier Studio',
-    description: "Montage de dossiers d'aides pour le secteur musical francophone.",
+    title: siteConfig.title,
+    description: siteConfig.description,
   },
   robots: {
     index: true,
@@ -60,6 +69,10 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
+  },
+  other: {
+    'llms-txt': '/llms.txt',
+    'ai-summary': siteConfig.tagline,
   },
 }
 

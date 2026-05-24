@@ -1,11 +1,14 @@
 import type { Metadata } from 'next'
 import MethodePageContent from '@/components/pages/MethodePageContent'
+import { pageSeo } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Comment ça fonctionne — Dossier Studio',
+export const metadata: Metadata = pageSeo({
+  title: 'Comment fonctionne le montage de dossier de subvention musique',
   description:
-    "Le process Dossier Studio en 3 étapes : diagnostic, montage du dossier, dépôt et suivi pour les dossiers d'aides du secteur musical.",
-}
+    "Process en 3 étapes pour transformer un projet musical en dossier clair, cohérent et finançable : diagnostic, montage, dépôt et suivi.",
+  path: '/comment-ca-fonctionne',
+  keywords: ['comment monter un dossier de subvention musique', 'process dossier aide musicale', 'consultant dossier culturel'],
+})
 
 export default function CommentCaFonctionnePage() {
   return <MethodePageContent />

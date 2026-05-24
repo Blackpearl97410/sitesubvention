@@ -5,12 +5,15 @@ import Track from '@/components/daw/Track'
 import ContactAtmosphere from '@/components/sections/ContactAtmosphere'
 import ContactForm from '@/components/sections/ContactForm'
 import { contactEmail } from '@/lib/site'
+import { pageSeo } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Contact — Dossier Studio',
+export const metadata: Metadata = pageSeo({
+  title: 'Contact consultant subventions musique et projets culturels',
   description:
-    'Contacter Dossier Studio pour un projet de dossier, une demande de relecture ou un premier échange autour des aides du secteur musical.',
-}
+    "Contactez Dossier Studio pour un dossier CNM, SACEM, ADAMI, SPEDIDAM, une relecture de demande ou un premier échange sur votre projet musical.",
+  path: '/contact',
+  keywords: ['contact consultant subvention musique', 'aide dossier CNM contact', 'accompagnement dossier culturel'],
+})
 
 export default function Page() {
   return (

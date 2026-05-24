@@ -2,12 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Ruler from '@/components/daw/Ruler'
 import Track from '@/components/daw/Track'
+import { pageSeo } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'À propos — Dossier Studio',
+export const metadata: Metadata = pageSeo({
+  title: 'À propos de Dossier Studio et Alexandre Paviel',
   description:
-    "À propos d'Alexandre Paviel et de Dossier Studio, accompagnement au montage de dossiers d'aides et de subventions pour le secteur musical francophone.",
-}
+    "Dossier Studio accompagne labels, artistes, éditeurs, associations et structures culturelles dans le montage de dossiers d'aides et subventions.",
+  path: '/a-propos',
+  keywords: ['Alexandre Paviel Dossier Studio', 'consultant subventions culturelles', 'accompagnement artistes labels'],
+})
 
 export default function Page() {
   return (

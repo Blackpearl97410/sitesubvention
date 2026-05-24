@@ -6,12 +6,15 @@ import AidesOuvertes from '@/components/sections/AidesOuvertes'
 import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton'
 import { BackgroundGradientAnimation } from '@/components/visual/BackgroundGradientAnimation'
 import { dispositifList } from '@/lib/dispositifs'
+import { pageSeo } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Dispositifs — Dossier Studio',
+export const metadata: Metadata = pageSeo({
+  title: 'Aides musicales accompagnées : CNM, SACEM, ADAMI, SPEDIDAM',
   description:
-    "Panorama des dispositifs accompagnés par Dossier Studio : CNM, SPEDIDAM, ADAMI, SACEM, Régions, DAC et appels à projets culturels.",
-}
+    "Panorama des dispositifs de financement accompagnés : CNM, SPEDIDAM, ADAMI, SACEM, Régions, DAC, collectivités et appels à projets culturels.",
+  path: '/dispositifs',
+  keywords: ['aides musique CNM SACEM ADAMI SPEDIDAM', 'dispositifs financement musique', 'guichets subventions culturelles'],
+})
 
 export default function Page() {
   return (

@@ -3,6 +3,7 @@ import Ruler from '@/components/daw/Ruler'
 import Track from '@/components/daw/Track'
 import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton'
 import { BackgroundGradientAnimation } from '@/components/visual/BackgroundGradientAnimation'
+import { pageSeo } from '@/lib/seo'
 
 const stats = [
   { value: '3', label: 'cas clients anonymisés' },
@@ -43,11 +44,13 @@ const results = [
   },
 ]
 
-export const metadata: Metadata = {
-  title: 'Résultats — Dossier Studio',
+export const metadata: Metadata = pageSeo({
+  title: 'Résultats de dossiers de subventions musicales accompagnés',
   description:
-    'Résultats, cas anonymisés et montants réels obtenus ou visés dans les dossiers accompagnés par Dossier Studio.',
-}
+    "Cas clients anonymisés, dispositifs travaillés et montants obtenus : SACEM, département, CNM et dossiers culturels accompagnés.",
+  path: '/resultats',
+  keywords: ['résultats subventions musique', 'cas client dossier CNM', 'financements obtenus projet musical'],
+})
 
 export default function ResultatsPage() {
   return (

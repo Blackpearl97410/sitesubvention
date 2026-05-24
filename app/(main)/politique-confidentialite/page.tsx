@@ -1,11 +1,14 @@
 import type { Metadata } from 'next'
 import LegalDocument from '@/components/legal/LegalDocument'
 import { legalDetails } from '@/lib/legal'
+import { pageSeo } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Politique de confidentialité — Dossier Studio',
+export const metadata: Metadata = pageSeo({
+  title: 'Politique de confidentialité',
   description: 'Politique de confidentialité et traitement des données personnelles par Dossier Studio.',
-}
+  path: '/politique-confidentialite',
+  noIndex: true,
+})
 
 export default function Page() {
   return (

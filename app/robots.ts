@@ -1,14 +1,22 @@
 import { MetadataRoute } from 'next'
+import { siteConfig } from '@/lib/seo'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dossier-studio.com'
+  const baseUrl = siteConfig.url
 
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: '/private/',
-    },
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/api/', '/private/'],
+      },
+      {
+        userAgent: ['GPTBot', 'ChatGPT-User', 'ClaudeBot', 'PerplexityBot', 'Google-Extended'],
+        allow: '/',
+        disallow: ['/api/', '/private/'],
+      },
+    ],
     sitemap: `${baseUrl}/sitemap.xml`,
   }
 }

@@ -5,6 +5,7 @@ import OffersPricingSpotlight from '@/components/sections/OffersPricingSpotlight
 import Track from '@/components/daw/Track'
 import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton'
 import { BackgroundGradientAnimation } from '@/components/visual/BackgroundGradientAnimation'
+import { pageSeo } from '@/lib/seo'
 
 const offers = [
   {
@@ -52,11 +53,13 @@ const offers = [
   },
 ]
 
-export const metadata: Metadata = {
-  title: 'Offres — Dossier Studio',
+export const metadata: Metadata = pageSeo({
+  title: "Offres d'accompagnement aux dossiers de subventions musique",
   description:
-    "Accompagnements Dossier Studio : diagnostic, pack montage de dossier, modules inclus et accompagnements sur devis.",
-}
+    "Diagnostic, montage complet de dossier et accompagnement sur devis pour aides CNM, SACEM, ADAMI, SPEDIDAM, collectivités et appels à projets culturels.",
+  path: '/offres',
+  keywords: ['consultant subventions musique', 'montage dossier CNM tarif', 'accompagnement appel à projets musique'],
+})
 
 export default function OffresPage() {
   return (
