@@ -120,7 +120,7 @@ export default function DiagnosticFunnel() {
         }}
       >
         <div
-          className="flex-shrink-0 border-r flex items-center px-5"
+          className="daw-mobile-hidden flex-shrink-0 border-r flex items-center px-5"
           style={{ width: 'var(--label-w)', borderColor: 'var(--rule-dark)' }}
         >
           <span className="font-mono text-[0.5625rem] tracking-[0.14em] uppercase" style={{ color: 'var(--dim)' }}>
@@ -155,7 +155,7 @@ export default function DiagnosticFunnel() {
       >
         {/* Label col */}
         <div
-          className="flex-shrink-0 border-r flex flex-col justify-between py-12 px-5"
+          className="daw-mobile-hidden flex-shrink-0 border-r flex flex-col justify-between py-12 px-5"
           style={{
             width: 'var(--label-w)',
             background: 'var(--track-bg)',

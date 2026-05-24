@@ -270,6 +270,14 @@ main > * {
   section {
     overflow-x: hidden;
   }
+
+  .daw-mobile-hidden {
+    display: none !important;
+  }
+
+  .daw-mobile-full {
+    width: 100% !important;
+  }
 }
 
 html[data-device='phone'] body,
@@ -311,5 +319,9 @@ html[data-device='phone'] nav > div:first-child {
 }
 
 html[data-device='phone'] nav ul {
+  display: none !important;
+}
+
+html[data-device='phone'] .daw-mobile-hidden {
   display: none !important;
 }

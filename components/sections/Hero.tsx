@@ -73,7 +73,7 @@ export default function Hero() {
       <Parallax target={sectionRef} offset={14}>
         <Reveal viewportMargin="-16px" variant="fadeOnly">
           <div className="flex items-stretch border-b border-rule" style={{ height: 46, background: 'var(--paper)' }}>
-            <div className="flex-shrink-0 border-r border-rule-dark flex items-center px-5" style={{ width: 'var(--label-w)' }}>
+            <div className="daw-mobile-hidden flex-shrink-0 border-r border-rule-dark flex items-center px-5" style={{ width: 'var(--label-w)' }}>
               <span className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-soft">Financeurs suivis</span>
             </div>
             <div className="flex-1 flex items-center px-8 gap-7 overflow-x-auto">
