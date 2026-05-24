@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import MethodePageContent from '@/components/pages/MethodePageContent'
+import { BreadcrumbJsonLd } from '@/components/seo/StructuredData'
 import { pageSeo } from '@/lib/seo'
 
 export const metadata: Metadata = pageSeo({
@@ -11,5 +12,10 @@ export const metadata: Metadata = pageSeo({
 })
 
 export default function CommentCaFonctionnePage() {
-  return <MethodePageContent />
+  return (
+    <>
+      <BreadcrumbJsonLd items={[{ name: 'Comment ça fonctionne', path: '/comment-ca-fonctionne' }]} />
+      <MethodePageContent />
+    </>
+  )
 }

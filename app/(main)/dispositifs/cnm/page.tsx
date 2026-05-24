@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import DispositifDetailPage from '@/components/dispositifs/DispositifDetailPage'
+import { BreadcrumbJsonLd } from '@/components/seo/StructuredData'
 import { dispositifs } from '@/lib/dispositifs'
 import { pageSeo } from '@/lib/seo'
 
@@ -12,5 +13,10 @@ export const metadata: Metadata = pageSeo({
 })
 
 export default function Page() {
-  return <DispositifDetailPage dispositif={dispositifs.cnm} />
+  return (
+    <>
+      <BreadcrumbJsonLd items={[{ name: 'Dispositifs', path: '/dispositifs' }, { name: 'CNM', path: '/dispositifs/cnm' }]} />
+      <DispositifDetailPage dispositif={dispositifs.cnm} />
+    </>
+  )
 }

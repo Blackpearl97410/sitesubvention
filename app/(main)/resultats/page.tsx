@@ -3,6 +3,7 @@ import Ruler from '@/components/daw/Ruler'
 import Track from '@/components/daw/Track'
 import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton'
 import { BackgroundGradientAnimation } from '@/components/visual/BackgroundGradientAnimation'
+import { BreadcrumbJsonLd } from '@/components/seo/StructuredData'
 import { pageSeo } from '@/lib/seo'
 
 const stats = [
@@ -55,6 +56,7 @@ export const metadata: Metadata = pageSeo({
 export default function ResultatsPage() {
   return (
     <section style={{ paddingTop: 'var(--nav-h)', borderBottom: '2px solid var(--black)' }}>
+      <BreadcrumbJsonLd items={[{ name: 'Résultats', path: '/resultats' }]} />
       <Ruler label="Résultats" playheadDuration={22} />
 
       <Track name="Résultats" type="Cas clients anonymisés" armed contentClassName="!py-16 !px-12 !items-start">

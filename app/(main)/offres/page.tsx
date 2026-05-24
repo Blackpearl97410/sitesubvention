@@ -5,6 +5,7 @@ import OffersPricingSpotlight from '@/components/sections/OffersPricingSpotlight
 import Track from '@/components/daw/Track'
 import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton'
 import { BackgroundGradientAnimation } from '@/components/visual/BackgroundGradientAnimation'
+import { BreadcrumbJsonLd } from '@/components/seo/StructuredData'
 import { pageSeo } from '@/lib/seo'
 
 const offers = [
@@ -64,6 +65,7 @@ export const metadata: Metadata = pageSeo({
 export default function OffresPage() {
   return (
     <section style={{ paddingTop: 'var(--nav-h)', borderBottom: '2px solid var(--black)' }}>
+      <BreadcrumbJsonLd items={[{ name: 'Offres', path: '/offres' }]} />
       <Ruler label="Offres" playheadDuration={18} />
 
       <Track name="Offres" type="Modèle d'accompagnement" armed contentClassName="!py-16 !px-12 !items-start">

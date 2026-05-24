@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import DiagnosticFunnel from '@/components/sections/DiagnosticFunnel'
+import { BreadcrumbJsonLd } from '@/components/seo/StructuredData'
 import { pageSeo } from '@/lib/seo'
 
 export const metadata: Metadata = pageSeo({
@@ -11,5 +12,10 @@ export const metadata: Metadata = pageSeo({
 })
 
 export default function DiagnosticPage() {
-  return <DiagnosticFunnel />
+  return (
+    <>
+      <BreadcrumbJsonLd items={[{ name: 'Diagnostic', path: '/diagnostic' }]} />
+      <DiagnosticFunnel />
+    </>
+  )
 }

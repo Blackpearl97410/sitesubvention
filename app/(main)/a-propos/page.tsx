@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Ruler from '@/components/daw/Ruler'
 import Track from '@/components/daw/Track'
+import { BreadcrumbJsonLd } from '@/components/seo/StructuredData'
 import { pageSeo } from '@/lib/seo'
 
 export const metadata: Metadata = pageSeo({
@@ -15,6 +16,7 @@ export const metadata: Metadata = pageSeo({
 export default function Page() {
   return (
     <section style={{ paddingTop: 'var(--nav-h)', borderBottom: '2px solid var(--black)' }}>
+      <BreadcrumbJsonLd items={[{ name: 'À propos', path: '/a-propos' }]} />
       <Ruler label="À propos" playheadDuration={18} />
 
       <Track name="À propos" type="Positionnement" armed contentClassName="!py-16 !px-12 !items-start">

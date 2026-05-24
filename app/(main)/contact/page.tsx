@@ -4,6 +4,7 @@ import Ruler from '@/components/daw/Ruler'
 import Track from '@/components/daw/Track'
 import ContactAtmosphere from '@/components/sections/ContactAtmosphere'
 import ContactForm from '@/components/sections/ContactForm'
+import { BreadcrumbJsonLd } from '@/components/seo/StructuredData'
 import { contactEmail } from '@/lib/site'
 import { pageSeo } from '@/lib/seo'
 
@@ -18,6 +19,7 @@ export const metadata: Metadata = pageSeo({
 export default function Page() {
   return (
     <section className="relative overflow-hidden" style={{ paddingTop: 'var(--nav-h)', borderBottom: '2px solid var(--black)' }}>
+      <BreadcrumbJsonLd items={[{ name: 'Contact', path: '/contact' }]} />
       <Ruler label="Contact" playheadDuration={18} hideLabel />
 
       <Track

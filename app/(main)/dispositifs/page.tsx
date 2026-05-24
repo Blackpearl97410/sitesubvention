@@ -5,6 +5,7 @@ import Track from '@/components/daw/Track'
 import AidesOuvertes from '@/components/sections/AidesOuvertes'
 import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton'
 import { BackgroundGradientAnimation } from '@/components/visual/BackgroundGradientAnimation'
+import { BreadcrumbJsonLd } from '@/components/seo/StructuredData'
 import { dispositifList } from '@/lib/dispositifs'
 import { pageSeo } from '@/lib/seo'
 
@@ -19,6 +20,7 @@ export const metadata: Metadata = pageSeo({
 export default function Page() {
   return (
     <section style={{ paddingTop: 'var(--nav-h)', borderBottom: '2px solid var(--black)' }}>
+      <BreadcrumbJsonLd items={[{ name: 'Dispositifs', path: '/dispositifs' }]} />
       <Ruler label="Dispositifs" playheadDuration={20} />
 
       <Track name="Dispositifs" type="Aides à activer" armed contentClassName="!py-16 !px-12 !items-start">
