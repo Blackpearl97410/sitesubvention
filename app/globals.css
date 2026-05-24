@@ -52,6 +52,12 @@ body {
     linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
 }
 
+html,
+body {
+  min-height: 100%;
+  overflow-y: auto;
+}
+
 button,
 input,
 textarea,
@@ -254,13 +260,56 @@ main > * {
     --fs-stat:  clamp(2rem, 8vw, 4rem);
   }
 
-  /* Masquer la colonne label quand --label-w = 0 */
-  [style*="--label-w"] {
-    overflow: hidden;
+  html,
+  body {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Permettre le scroll horizontal sur les sections si nécessaire */
   section {
     overflow-x: hidden;
   }
+}
+
+html[data-device='phone'] body,
+html[data-device='tablet'] body {
+  overscroll-behavior-y: auto;
+  touch-action: pan-y;
+}
+
+@media (max-width: 768px) {
+  nav > div:first-child {
+    width: auto !important;
+    min-width: 136px;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    border-right-width: 0 !important;
+  }
+
+  nav ul {
+    display: none !important;
+  }
+
+  nav > div:last-child {
+    margin-left: auto;
+  }
+
+  nav > div:last-child a {
+    min-height: 40px !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+html[data-device='phone'] nav > div:first-child {
+  width: auto !important;
+  min-width: 136px;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  border-right-width: 0 !important;
+}
+
+html[data-device='phone'] nav ul {
+  display: none !important;
 }

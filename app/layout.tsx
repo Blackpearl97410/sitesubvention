@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Barlow_Condensed, Barlow, Space_Mono } from 'next/font/google'
 import MotionProvider from '@/components/motion/MotionProvider'
 import JsonLd from '@/components/seo/JsonLd'
+import DeviceTypeProvider from '@/components/system/DeviceTypeProvider'
 import { seoKeywords, siteConfig } from '@/lib/seo'
 import { colors, layout } from '@/lib/tokens'
 import './globals.css'
@@ -113,6 +114,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       }
     >
       <body style={{ backgroundColor: colors.white, color: colors.ink }}>
+        <DeviceTypeProvider />
         <JsonLd />
         <MotionProvider>{children}</MotionProvider>
       </body>
