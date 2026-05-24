@@ -16,6 +16,17 @@ type ContactPayload = {
 const RESEND_ENDPOINT = 'https://api.resend.com/emails'
 const defaultRecipient = 'lablackbox974@gmail.com'
 const fallbackContactEmail = 'contact@dossier-studio.fr'
+const emailTheme = {
+  black: '#111111',
+  ink: '#F3F1EA',
+  paper: '#F5F6F1',
+  paper2: '#ECEDE7',
+  soft: '#D7D2C8',
+  dim: '#A39E95',
+  rule: 'rgba(243,241,234,0.18)',
+  accent: '#C85232',
+  accentDark: '#A7432A',
+}
 
 function clean(value?: string) {
   return typeof value === 'string' ? value.trim() : ''
@@ -28,6 +39,114 @@ function escapeHtml(value: string) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;')
+}
+
+function emailShell({
+  preheader,
+  eyebrow,
+  title,
+  intro,
+  children,
+}: {
+  preheader: string
+  eyebrow: string
+  title: string
+  intro?: string
+  children: string
+}) {
+  return `
+    <!doctype html>
+    <html lang="fr">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="color-scheme" content="dark light">
+        <title>${escapeHtml(title)}</title>
+      </head>
+      <body style="margin:0;padding:0;background:${emailTheme.black};color:${emailTheme.ink};font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased">
+        <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent">${escapeHtml(preheader)}</div>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:${emailTheme.black};background-image:radial-gradient(circle at 88% 0%, rgba(200,82,50,0.22), transparent 28%),linear-gradient(180deg, rgba(255,255,255,0.04), transparent 36%);">
+          <tr>
+            <td align="center" style="padding:34px 16px">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:680px;border-collapse:collapse">
+                <tr>
+                  <td style="padding:0 0 18px">
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td style="vertical-align:middle">
+                          <p style="margin:0;font-size:12px;line-height:1;text-transform:uppercase;letter-spacing:0.16em;color:${emailTheme.dim};font-weight:700">Dossier Studio</p>
+                          <p style="margin:7px 0 0;font-size:13px;line-height:1.5;color:${emailTheme.soft}">De l'idée artistique au dossier finançable.</p>
+                        </td>
+                        <td align="right" style="vertical-align:middle">
+                          <span style="display:inline-block;width:10px;height:10px;border-radius:999px;background:${emailTheme.accent};box-shadow:0 0 18px rgba(200,82,50,0.55)"></span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="border:1px solid ${emailTheme.rule};background:${emailTheme.paper};color:#161614">
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td style="padding:12px 18px;border-bottom:1px solid #D0D2CA;background:${emailTheme.paper2}">
+                          <p style="margin:0;font-size:11px;text-transform:uppercase;letter-spacing:0.14em;color:${emailTheme.accent};font-weight:700">${escapeHtml(eyebrow)}</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:30px 26px 26px">
+                          <h1 style="margin:0;color:#121212;font-size:34px;line-height:0.96;text-transform:uppercase;letter-spacing:0;font-weight:900;font-family:Arial Black,Arial,Helvetica,sans-serif">${escapeHtml(title)}</h1>
+                          ${
+                            intro
+                              ? `<p style="margin:18px 0 0;color:#565650;font-size:16px;line-height:1.65">${escapeHtml(intro)}</p>`
+                              : ''
+                          }
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:0 26px 30px">
+                          ${children}
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:18px 2px 0">
+                    <p style="margin:0;color:${emailTheme.dim};font-size:12px;line-height:1.6">
+                      Dossier Studio · Accompagnement subventions, appels à projets et dossiers culturels.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </body>
+    </html>
+  `
+}
+
+function calloutHtml(title: string, body: string) {
+  return `
+    <div style="margin:0 0 22px;padding:18px 18px 17px;background:#161614;color:${emailTheme.ink};border-left:4px solid ${emailTheme.accent}">
+      <p style="margin:0 0 7px;font-size:12px;text-transform:uppercase;letter-spacing:0.14em;color:${emailTheme.accent};font-weight:700">${escapeHtml(title)}</p>
+      <p style="margin:0;font-size:15px;line-height:1.6;color:${emailTheme.soft}">${escapeHtml(body)}</p>
+    </div>
+  `
+}
+
+function buttonHtml(label: string, href: string) {
+  return `
+    <table role="presentation" cellspacing="0" cellpadding="0" style="margin:22px 0 0">
+      <tr>
+        <td style="background:${emailTheme.accent};border:1px solid ${emailTheme.accentDark}">
+          <a href="${escapeHtml(href)}" style="display:inline-block;padding:13px 18px;color:#ffffff;text-decoration:none;font-size:12px;text-transform:uppercase;letter-spacing:0.14em;font-weight:700">
+            ${escapeHtml(label)}
+          </a>
+        </td>
+      </tr>
+    </table>
+  `
 }
 
 function labelFromValue(
@@ -176,6 +295,7 @@ function buildOwnerText(payload: ReturnType<typeof normalizePayload>) {
 
 function buildOwnerHtml(payload: ReturnType<typeof normalizePayload>) {
   const qualification = qualifyDemand(payload)
+  const title = payload.source === 'diagnostic' ? 'Nouvelle demande de diagnostic' : 'Nouveau message site'
   const rows =
     payload.source === 'diagnostic'
       ? [
@@ -193,32 +313,39 @@ function buildOwnerHtml(payload: ReturnType<typeof normalizePayload>) {
           ['Message', payload.message || 'Non renseigné'],
         ]
 
-  return `
-    <div style="font-family:Arial,sans-serif;max-width:680px;color:#171717">
-      <p style="margin:0 0 10px;text-transform:uppercase;letter-spacing:.08em;font-size:12px;color:#c85232">Dossier Studio</p>
-      <h1 style="margin:0 0 18px;font-size:24px;line-height:1.2">${payload.source === 'diagnostic' ? 'Nouvelle demande de diagnostic' : 'Nouveau message site'}</h1>
-      <div style="padding:16px 18px;background:#f6f2ec;border-left:4px solid #c85232;margin-bottom:20px">
-        <p style="margin:0 0 6px"><strong>${escapeHtml(qualification.priority)}</strong> · score ${qualification.score}/8</p>
-        <p style="margin:0">${escapeHtml(qualification.nextAction)}</p>
-      </div>
-      <h2 style="font-size:16px;margin:0 0 10px">Signaux de qualification</h2>
-      <ul style="margin:0 0 20px;padding-left:20px">
+  const content = `
+    ${calloutHtml(
+      `${qualification.priority} · score ${qualification.score}/8`,
+      qualification.nextAction
+    )}
+    <div style="margin:0 0 22px;padding:18px;border:1px solid #D0D2CA;background:#FFFFFF">
+      <p style="margin:0 0 12px;font-size:12px;text-transform:uppercase;letter-spacing:0.14em;color:${emailTheme.accent};font-weight:700">Signaux de qualification</p>
+      <ul style="margin:0;padding-left:20px;color:#161614;font-size:14px;line-height:1.7">
         ${qualification.signals.map((signal) => `<li>${escapeHtml(signal)}</li>`).join('')}
       </ul>
-      <table style="width:100%;border-collapse:collapse">
-        ${rows
-          .map(
-            ([label, value]) => `
-              <tr>
-                <td style="width:190px;padding:10px;border-top:1px solid #e5ded4;color:#6f6a63">${escapeHtml(label)}</td>
-                <td style="padding:10px;border-top:1px solid #e5ded4;white-space:pre-wrap">${escapeHtml(value)}</td>
-              </tr>
-            `
-          )
-          .join('')}
-      </table>
     </div>
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;background:#FFFFFF;border:1px solid #D0D2CA">
+      ${rows
+        .map(
+          ([label, value]) => `
+            <tr>
+              <td style="width:190px;padding:13px 14px;border-bottom:1px solid #E4E5DE;color:#85857E;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;vertical-align:top">${escapeHtml(label)}</td>
+              <td style="padding:13px 14px;border-bottom:1px solid #E4E5DE;color:#161614;font-size:15px;line-height:1.55;white-space:pre-wrap;vertical-align:top">${escapeHtml(value)}</td>
+            </tr>
+          `
+        )
+        .join('')}
+    </table>
+    ${buttonHtml('Répondre au prospect', `mailto:${payload.email}`)}
   `
+
+  return emailShell({
+    preheader: `${qualification.priority} - ${payload.firstName}`,
+    eyebrow: payload.source === 'diagnostic' ? 'Diagnostic entrant' : 'Contact entrant',
+    title,
+    intro: 'Une nouvelle demande vient d’arriver depuis le site. Voici la synthèse exploitable pour traiter le lead rapidement.',
+    children: content,
+  })
 }
 
 function buildAutoReplyText(payload: ReturnType<typeof normalizePayload>, contactEmail: string) {
@@ -241,20 +368,32 @@ function buildAutoReplyText(payload: ReturnType<typeof normalizePayload>, contac
 }
 
 function buildAutoReplyHtml(payload: ReturnType<typeof normalizePayload>, contactEmail: string) {
-  return `
-    <div style="font-family:Arial,sans-serif;max-width:620px;color:#171717;line-height:1.6">
-      <p>Bonjour ${escapeHtml(payload.firstName)},</p>
-      <p>Merci pour votre message. Votre demande a bien été reçue par <strong>Dossier Studio</strong>.</p>
-      <p>${
-        payload.source === 'diagnostic'
-          ? 'Je vais regarder votre profil de projet, votre statut et votre niveau de budget afin de vous répondre avec une première orientation claire.'
-          : 'Je vais prendre connaissance de votre projet afin de vous répondre avec une première orientation claire.'
-      }</p>
-      <p><strong>Réponse habituelle :</strong> sous 48h ouvrées.</p>
-      <p>Si vous souhaitez ajouter un document, un calendrier ou un lien de présentation, vous pouvez répondre directement à cet email ou écrire à <a href="mailto:${escapeHtml(contactEmail)}">${escapeHtml(contactEmail)}</a>.</p>
-      <p>À bientôt,<br>Dossier Studio</p>
+  const intro =
+    payload.source === 'diagnostic'
+      ? 'Je vais regarder votre profil de projet, votre statut et votre niveau de budget afin de vous répondre avec une première orientation claire.'
+      : 'Je vais prendre connaissance de votre projet afin de vous répondre avec une première orientation claire.'
+
+  const content = `
+    <div style="padding:20px;border:1px solid #D0D2CA;background:#FFFFFF">
+      <p style="margin:0 0 16px;color:#161614;font-size:16px;line-height:1.7">Bonjour ${escapeHtml(payload.firstName)},</p>
+      <p style="margin:0 0 16px;color:#161614;font-size:16px;line-height:1.7">Merci pour votre message. Votre demande a bien été reçue par <strong>Dossier Studio</strong>.</p>
+      <p style="margin:0;color:#565650;font-size:16px;line-height:1.7">${escapeHtml(intro)}</p>
     </div>
+    ${calloutHtml('Réponse habituelle', 'Sous 48h ouvrées, avec une première orientation claire sur votre dossier.')}
+    <p style="margin:0;color:#565650;font-size:14px;line-height:1.7">
+      Si vous souhaitez ajouter un document, un calendrier ou un lien de présentation, vous pouvez répondre directement à cet email ou écrire à
+      <a href="mailto:${escapeHtml(contactEmail)}" style="color:${emailTheme.accent};text-decoration:underline;text-underline-offset:3px">${escapeHtml(contactEmail)}</a>.
+    </p>
+    ${buttonHtml('Ajouter une information', `mailto:${contactEmail}`)}
   `
+
+  return emailShell({
+    preheader: 'Votre demande a bien été reçue par Dossier Studio.',
+    eyebrow: 'Demande reçue',
+    title: 'Message bien reçu',
+    intro: 'Merci pour votre confiance. Votre demande entre maintenant en phase de lecture et de qualification.',
+    children: content,
+  })
 }
 
 async function sendEmail(apiKey: string, body: Record<string, unknown>) {
