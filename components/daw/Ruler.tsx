@@ -42,7 +42,7 @@ export default function Ruler({ label = 'Session · 2025', playheadDelay = 0, pl
 
   return (
     <motion.div
-      className="sticky z-[150] flex border-b border-rule-dark"
+      className="daw-ruler sticky z-[150] flex border-b border-rule-dark"
       style={{ y, top: 'var(--nav-h)' }}
     >
       <div

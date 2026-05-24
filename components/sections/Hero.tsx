@@ -181,19 +181,19 @@ export default function Hero() {
         </StaggerItem>
 
         <StaggerItem>
-          <Track name="Manque à gagner" type="Aides non demandées" armed contentClassName="!py-12 !px-12 !gap-16">
-            <Parallax target={sectionRef} offset={16} className="pt-4 relative before:absolute before:top-0 before:left-0 before:w-16 before:h-0.5 before:bg-accent flex-shrink-0">
+          <Track name="Manque à gagner" type="Aides non demandées" armed contentClassName="hero-stat-track !py-12 !px-12 !gap-16">
+            <Parallax target={sectionRef} offset={16} className="hero-stat-value pt-4 relative before:absolute before:top-0 before:left-0 before:w-16 before:h-0.5 before:bg-accent flex-shrink-0">
               <p className="font-mono text-[0.4rem] tracking-[0.18em] uppercase text-accent mb-4">
                 Aides non demandées
               </p>
               <p
-                className="font-cond font-black tracking-[-0.02em] text-black leading-none"
+                className="hero-stat-counter font-cond font-black tracking-[-0.02em] text-black leading-none"
                 style={{ fontSize: 'var(--fs-stat)' }}
               >
                 <span className="text-accent">5 000</span> – 30 000 €
               </p>
             </Parallax>
-            <p className="font-body font-normal text-soft text-[0.95rem] leading-[1.85] max-w-sm border-l border-rule-dark pl-8">
+            <p className="hero-stat-note font-body font-normal text-soft text-[0.95rem] leading-[1.85] max-w-sm border-l border-rule-dark pl-8">
               Par dossier non déposé — multipliés par 2, 3, 4 ans d'absence, parce que le dossier
               prenait trop de place dans ton agenda.
             </p>
@@ -202,7 +202,7 @@ export default function Hero() {
       </StaggerGroup>
 
       <Reveal viewportMargin="-24px" variant="fadeOnly">
-        <Track name="Diagnostic" type="Premier échange" contentClassName="!py-6 !px-12 !gap-5">
+        <Track name="Diagnostic" type="Premier échange" contentClassName="hero-diagnostic-track !py-6 !px-12 !gap-5">
           <Magnetic strength={12}>
             <motion.div
               style={{ background: 'linear-gradient(135deg, var(--accent), #d86a47)', boxShadow: '0 18px 40px rgba(200,82,50,0.2)' }}
@@ -226,7 +226,7 @@ export default function Hero() {
               </Link>
             </motion.div>
           </Magnetic>
-          <div className="ml-auto flex items-center gap-2">
+          <div className="hero-availability ml-auto flex items-center gap-2">
             <span className="w-[6px] h-[6px] rounded-full bg-accent" style={{ animation: 'pulse-soft 2.5s ease-in-out infinite' }} />
             <span className="font-mono text-[0.6875rem] tracking-[0.14em] uppercase text-dim">
               Disponible · {territoryLabel}

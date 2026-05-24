@@ -276,8 +276,91 @@ main > * {
     display: none !important;
   }
 
+  .daw-ruler {
+    display: none !important;
+  }
+
   .daw-mobile-full {
     width: 100% !important;
+  }
+
+  .hero-stat-track {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1.35rem !important;
+    padding: 2rem 1.25rem !important;
+  }
+
+  .hero-stat-value {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-shrink: 1 !important;
+    overflow: visible !important;
+  }
+
+  .hero-stat-counter {
+    max-width: 100% !important;
+    font-size: clamp(2.1rem, 11vw, 3.35rem) !important;
+    line-height: 1.03 !important;
+    letter-spacing: 0 !important;
+    white-space: normal !important;
+    overflow-wrap: normal;
+  }
+
+  .hero-stat-note {
+    max-width: none !important;
+    border-left: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .hero-diagnostic-track {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.95rem !important;
+    padding: 1.5rem 1.25rem !important;
+  }
+
+  .hero-availability {
+    width: 100% !important;
+    margin-left: 0 !important;
+    align-items: flex-start !important;
+  }
+
+  .hero-availability span:last-child {
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.45 !important;
+  }
+
+  .theme-dark h1.font-cond,
+  .theme-dark h2.font-cond {
+    max-width: 100% !important;
+    font-size: min(var(--fs-hero), 3.6rem) !important;
+    line-height: 0.96 !important;
+    letter-spacing: 0 !important;
+    overflow-wrap: break-word;
+  }
+
+  .theme-dark h2.font-cond {
+    font-size: min(var(--fs-h2), 2.8rem) !important;
+  }
+
+  .credibility-stats-track {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .credibility-stat {
+    width: 100% !important;
+    min-width: 0 !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--rule) !important;
+    padding: 1.5rem 1.25rem !important;
+  }
+
+  .credibility-stat:last-child {
+    border-bottom: 0 !important;
   }
 }
 
