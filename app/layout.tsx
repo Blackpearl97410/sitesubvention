@@ -49,15 +49,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
-  icons: {
-    icon: [
-      { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
-      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
-    ],
-    shortcut: '/favicon-48x48.png',
-    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
-  },
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.description,
