@@ -30,6 +30,8 @@ const spaceMono = Space_Mono({
 })
 
 const googleAnalyticsIds = ['G-RV696ZWMXX', 'G-FZEX2C0F4N']
+const googleAdsId = 'AW-17697827383'
+const googleTagIds = [...googleAnalyticsIds, googleAdsId]
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -48,7 +50,13 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   icons: {
-    icon: '/icon.svg',
+    icon: [
+      { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon-48x48.png',
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
   openGraph: {
     title: siteConfig.title,
@@ -118,7 +126,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body style={{ backgroundColor: colors.white, color: colors.ink }}>
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsIds[0]}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -126,7 +134,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            ${googleAnalyticsIds.map((id) => `gtag('config', '${id}');`).join('\n            ')}
+            ${googleTagIds.map((id) => `gtag('config', '${id}');`).join('\n            ')}
           `}
         </Script>
         <DeviceTypeProvider />

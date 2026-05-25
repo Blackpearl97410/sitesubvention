@@ -14,6 +14,18 @@ export default function JsonLd() {
         description: siteConfig.description,
         slogan: siteConfig.tagline,
         url: siteConfig.url,
+        logo: {
+          '@type': 'ImageObject',
+          url: absoluteUrl(siteConfig.logo),
+          width: 500,
+          height: 250,
+        },
+        image: {
+          '@type': 'ImageObject',
+          url: absoluteUrl(siteConfig.logoSquare),
+          width: 512,
+          height: 512,
+        },
         email: siteConfig.email,
         founder: {
           '@type': 'Person',

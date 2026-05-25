@@ -4,6 +4,8 @@ export const siteConfig = {
   name: 'Dossier Studio',
   legalName: 'Dossier Studio',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://dossier-studio.fr',
+  logo: '/brand/dossier-studio-logo.png',
+  logoSquare: '/brand/dossier-studio-logo-square.png',
   title: "Dossier Studio - Montage de dossiers d'aides pour projets musicaux",
   description:
     "Accompagnement premium au montage de dossiers d'aides, subventions et appels à projets pour labels, artistes, éditeurs, producteurs, studios et structures culturelles francophones.",
