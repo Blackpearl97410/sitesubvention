@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Barlow_Condensed, Barlow, Space_Mono } from 'next/font/google'
+import Script from 'next/script'
 import MotionProvider from '@/components/motion/MotionProvider'
 import JsonLd from '@/components/seo/JsonLd'
 import DeviceTypeProvider from '@/components/system/DeviceTypeProvider'
@@ -27,6 +28,8 @@ const spaceMono = Space_Mono({
   variable: '--font-space-mono',
   display: 'swap',
 })
+
+const googleAnalyticsIds = ['G-RV696ZWMXX', 'G-FZEX2C0F4N']
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -114,6 +117,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       }
     >
       <body style={{ backgroundColor: colors.white, color: colors.ink }}>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsIds[0]}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            ${googleAnalyticsIds.map((id) => `gtag('config', '${id}');`).join('\n            ')}
+          `}
+        </Script>
         <DeviceTypeProvider />
         <JsonLd />
         <MotionProvider>{children}</MotionProvider>

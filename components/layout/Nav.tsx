@@ -31,7 +31,7 @@ export default function Nav() {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-[500] isolate flex items-stretch transition-colors"
+      className="site-main-nav fixed top-0 left-0 right-0 z-[500] isolate flex items-stretch transition-colors"
       style={{
         height: 'var(--nav-h)',
         background: navBg,

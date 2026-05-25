@@ -371,13 +371,13 @@ html[data-device='tablet'] body {
 }
 
 @media (max-width: 768px) {
-  nav {
+  .site-main-nav {
     flex-wrap: wrap;
     align-content: stretch;
     height: var(--nav-h) !important;
   }
 
-  nav > div:first-child {
+  .site-main-nav > div:first-child {
     height: 58px;
     width: auto !important;
     min-width: 136px;
@@ -386,7 +386,7 @@ html[data-device='tablet'] body {
     border-right-width: 0 !important;
   }
 
-  nav ul {
+  .site-main-nav ul {
     position: absolute;
     left: 0;
     right: 0;
@@ -403,28 +403,75 @@ html[data-device='tablet'] body {
     -webkit-overflow-scrolling: touch;
   }
 
-  nav ul::-webkit-scrollbar {
+  .site-main-nav ul::-webkit-scrollbar {
     display: none;
   }
 
-  nav li {
+  .site-main-nav li {
     flex-shrink: 0;
   }
 
-  nav > div:last-child {
+  .site-main-nav > div:last-child {
     order: 2;
     height: 58px;
     margin-left: auto;
   }
 
-  nav > div:last-child a {
+  .site-main-nav > div:last-child a {
     min-height: 40px !important;
     padding-left: 1rem !important;
     padding-right: 1rem !important;
   }
+
+  .site-footer-bottom {
+    align-items: center;
+    padding: 1.35rem 1rem 1.5rem !important;
+    text-align: center;
+  }
+
+  .site-footer-legal {
+    width: 100%;
+    align-items: center;
+  }
+
+  .site-footer-copyright {
+    max-width: 19rem;
+    line-height: 1.55;
+    text-wrap: balance;
+  }
+
+  .site-footer-links {
+    position: static !important;
+    display: flex !important;
+    width: 100%;
+    height: auto !important;
+    justify-content: center;
+    gap: 0.7rem 1rem !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    border-top: 0 !important;
+  }
+
+  .site-footer-link {
+    flex: 0 1 auto;
+    line-height: 1.6;
+    white-space: nowrap;
+  }
+
+  .site-footer-contact {
+    width: 100%;
+    max-width: 20rem;
+    justify-content: center;
+    white-space: normal;
+  }
+
+  .site-footer-contact span:nth-child(2) {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
 }
 
-html[data-device='phone'] nav > div:first-child {
+html[data-device='phone'] .site-main-nav > div:first-child {
   height: 58px;
   width: auto !important;
   min-width: 136px;
@@ -433,7 +480,7 @@ html[data-device='phone'] nav > div:first-child {
   border-right-width: 0 !important;
 }
 
-html[data-device='phone'] nav ul {
+html[data-device='phone'] .site-main-nav ul {
   display: flex !important;
 }
 

@@ -65,19 +65,19 @@ export default function Footer() {
       </div>
       {/* Bas de footer */}
       <div
-        className="flex flex-col gap-3 px-6 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-10"
+        className="site-footer-bottom flex flex-col gap-4 px-6 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-10"
         style={{ background: 'rgba(12, 12, 12, 0.92)' }}
       >
-        <div className="flex flex-col gap-3">
-          <span className="font-mono text-[0.5625rem] tracking-[0.12em] uppercase text-dim">
+        <div className="site-footer-legal flex flex-col gap-3">
+          <span className="site-footer-copyright font-mono text-[0.5625rem] tracking-[0.12em] uppercase text-dim">
             © 2026 Dossier Studio · France & La Réunion
           </span>
-          <nav className="flex flex-wrap gap-x-4 gap-y-2">
+          <nav className="site-footer-links flex flex-wrap gap-x-4 gap-y-2">
             {legalLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-mono text-[0.5rem] uppercase tracking-[0.12em] text-dim underline decoration-white/20 underline-offset-4 transition-colors hover:text-white hover:decoration-accent"
+                className="site-footer-link font-mono text-[0.5rem] uppercase tracking-[0.12em] text-dim underline decoration-white/20 underline-offset-4 transition-colors hover:text-white hover:decoration-accent"
               >
                 {link.label}
               </Link>
@@ -87,7 +87,7 @@ export default function Footer() {
         <a
           href={`mailto:${contactEmail}?subject=Demande%20de%20contact%20%E2%80%94%20Dossier%20Studio`}
           aria-label={`Envoyer un email à ${contactEmail}`}
-          className="group inline-flex w-fit items-center gap-2 rounded-full border border-white/18 px-3.5 py-2 font-mono text-[0.5625rem] tracking-[0.12em] uppercase text-soft transition-all hover:border-accent hover:bg-accent/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+          className="site-footer-contact group inline-flex w-fit items-center gap-2 rounded-full border border-white/18 px-3.5 py-2 font-mono text-[0.5625rem] tracking-[0.12em] uppercase text-soft transition-all hover:border-accent hover:bg-accent/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
         >
           <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent font-mono text-[0.55rem] text-white transition-transform group-hover:scale-105">
             @
