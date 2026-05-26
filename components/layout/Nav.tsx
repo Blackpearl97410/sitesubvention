@@ -31,7 +31,7 @@ export default function Nav() {
 
   return (
     <nav
-      className="site-main-nav fixed top-0 left-0 right-0 z-[500] isolate flex items-stretch transition-colors"
+      className="fixed top-0 left-0 right-0 z-[500] isolate flex items-stretch transition-colors"
       style={{
         height: 'var(--nav-h)',
         background: navBg,
@@ -50,13 +50,16 @@ export default function Nav() {
         <motion.div whileHover={{ x: 2 }} transition={{ duration: 0.18 }}>
           <Link
             href="/"
-            className={`font-cond text-base font-extrabold uppercase tracking-[0.08em] ${navText} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black`}
+            className={`group relative inline-flex items-center overflow-visible font-cond text-base font-extrabold uppercase tracking-[0.08em] ${navText} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black`}
           >
-            <span className="inline-flex items-center">
-              <RollingText text="Dossier" />
+            <span className="pointer-events-none absolute -inset-x-3 -inset-y-2 rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.16),rgba(200,82,50,0.14)_38%,transparent_72%)] opacity-45 blur-md transition-all duration-500 group-hover:scale-110 group-hover:opacity-95" />
+            <span className="pointer-events-none absolute -inset-x-4 -inset-y-3 rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(200,82,50,0.28),transparent_68%)] opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-80" />
+            <span className="relative z-10 inline-flex items-center drop-shadow-[0_0_12px_rgba(243,241,234,0.28)] transition-[filter,color] duration-300 group-hover:text-white group-hover:drop-shadow-[0_0_18px_rgba(243,241,234,0.55)]">
+              <span>Dossier</span>
               <span className="text-accent">.</span>
-              <RollingText text="Studio" />
+              <span>Studio</span>
             </span>
+            <span className="pointer-events-none absolute inset-y-0 -left-8 w-7 -skew-x-12 bg-white/18 opacity-0 blur-[1px] transition-all duration-700 ease-out group-hover:left-[110%] group-hover:opacity-100" />
           </Link>
         </motion.div>
       </div>
@@ -77,7 +80,7 @@ export default function Nav() {
                 >
                   <span className="inline-flex items-center gap-2">
                     {isActive ? <span className="h-1.5 w-1.5 rounded-full bg-accent" /> : null}
-                    <RollingText text={l.label} />
+                    <span className="leading-none">{l.label}</span>
                   </span>
                 </LiquidGlassButton>
               )
@@ -101,7 +104,7 @@ export default function Nav() {
             contentClassName="text-white"
           >
             <span className="font-cond font-bold text-[0.6875rem] tracking-[0.14em] uppercase text-white whitespace-nowrap">
-              <RollingText text="Diagnostic gratuit" />
+              <span className="leading-none">Diagnostic gratuit</span>
             </span>
           </LiquidGlassButton>
         </motion.div>

@@ -125,19 +125,10 @@ export default function OffresPage() {
         <Track
           key={offer.id}
           name={`Offre ${offer.id}`}
-          type={offer.title}
           armed={offer.id === '02'}
           contentClassName="!px-0 !py-0 !gap-0 !items-stretch"
         >
-          <div className="grid w-full lg:grid-cols-[90px_minmax(0,1fr)_320px]">
-            <div className="border-r border-rule px-10 py-10">
-              <span
-                className="font-cond font-black leading-none tracking-[-0.04em] text-rule-dark"
-                style={{ fontSize: 'var(--fs-h3)' }}
-              >
-                {offer.id}
-              </span>
-            </div>
+          <div className="grid w-full lg:grid-cols-[minmax(0,1fr)_320px]">
             <div className="px-10 py-10">
               <p className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-accent mb-4">
                 {offer.profile}

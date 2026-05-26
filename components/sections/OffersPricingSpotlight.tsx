@@ -46,19 +46,6 @@ function FloatingPaths({ position }: { position: number }) {
   )
 }
 
-const pillars = [
-  {
-    label: 'Socle fixe',
-    title: "Frais d'ingénierie",
-    body: "Validation d'éligibilité, structuration du budget, rédaction de l'argumentaire et préparation du dossier.",
-  },
-  {
-    label: 'Variable',
-    title: 'Success fee',
-    body: 'Commission calculée uniquement sur les montants accordés et encaissés. Si rien n’est obtenu, cette part ne se déclenche pas.',
-  },
-]
-
 const pricingPlans = [
   {
     name: "Diagnostic d'éligibilité",
@@ -93,45 +80,23 @@ export default function OffersPricingSpotlight() {
           <div className="border-r border-[rgba(243,241,234,0.14)] px-12 py-12">
             <div className="mb-9 flex flex-col gap-5">
               <span className="font-mono text-[0.75rem] tracking-[0.16em] uppercase text-accent">
-                Modèle hybride
+                Grille tarifaire
               </span>
               <h2
                 className="font-cond font-black uppercase leading-[0.9] tracking-[-0.03em] text-white"
                 style={{ fontSize: 'var(--fs-h2)' }}
               >
-                Fixe +
+                Grille
                 <br />
-                commission au succès.
+                tarifaire.
               </h2>
               <p className="max-w-[780px] font-body text-[1rem] leading-[1.85] text-[rgba(243,241,234,0.82)]">
-                Nous ne croyons pas aux facturations excessives sans résultat. Le modèle repose sur
-                un socle fixe pour couvrir le montage, puis une commission uniquement si la subvention
-                est accordée et encaissée.
+                Les tarifs varient selon le niveau de cadrage, la complexité du dossier, le montant visé
+                et le volume de reprise nécessaire.
               </p>
             </div>
 
-            <div className="grid gap-4 lg:grid-cols-2">
-              {pillars.map((pillar, index) => (
-                <motion.div
-                  key={pillar.title}
-                  className="min-h-[260px] border border-[rgba(243,241,234,0.14)] bg-[rgba(255,255,255,0.055)] px-7 py-7 backdrop-blur-xl"
-                  whileHover={{ y: -4, backgroundColor: 'rgba(255,255,255,0.075)' }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <p className="mb-5 font-mono text-[0.6875rem] tracking-[0.14em] uppercase text-accent">
-                    {index === 0 ? '01' : '02'} · {pillar.label}
-                  </p>
-                  <h3 className="mb-5 font-cond text-[1.55rem] font-black uppercase leading-[0.94] tracking-[-0.02em] text-white">
-                    {pillar.title}
-                  </h3>
-                  <p className="font-body text-[0.98rem] leading-[1.85] text-[rgba(243,241,234,0.78)]">
-                    {pillar.body}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="mt-8 overflow-hidden border border-[rgba(243,241,234,0.14)] bg-[rgba(255,255,255,0.05)] backdrop-blur-xl">
+            <div className="overflow-hidden border border-[rgba(243,241,234,0.14)] bg-[rgba(255,255,255,0.05)] backdrop-blur-xl">
               <div className="grid border-b border-[rgba(243,241,234,0.12)] bg-[rgba(255,255,255,0.05)] lg:grid-cols-[minmax(0,1fr)_190px_230px]">
                 {['Accompagnement', 'Socle fixe', 'Commission'].map((head) => (
                   <p
@@ -208,7 +173,7 @@ export default function OffersPricingSpotlight() {
                 Vérifier mon projet
               </Link>
               <p className="font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-[rgba(243,241,234,0.52)]">
-                Aucun success fee sans subvention accordée et encaissée.
+                Commission uniquement sur subvention accordée et encaissée.
               </p>
             </div>
           </div>

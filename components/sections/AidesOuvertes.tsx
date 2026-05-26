@@ -71,7 +71,7 @@ export default function AidesOuvertes() {
       id="aides-ouvertes"
       style={{ borderBottom: '2px solid var(--black)', scrollMarginTop: 'var(--nav-h)' }}
     >
-      <Track name="Aides ouvertes" type="Mise à jour 24h" armed contentClassName="!py-12 !px-12 !items-start">
+      <Track name="Aides ouvertes" type="Mise à jour 24h" armed hideLabel contentClassName="!py-12 !px-12 !items-start">
         <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1fr)_330px]">
           <div className="flex flex-col gap-5">
             <span className="font-mono text-[0.4375rem] tracking-[0.18em] uppercase text-accent">
@@ -105,7 +105,7 @@ export default function AidesOuvertes() {
         </div>
       </Track>
 
-      <Track name="Filtres" type="Projet / profil" contentClassName="!px-12 !py-6 !items-start !flex-col">
+      <Track name="Filtres" type="Projet / profil" hideLabel contentClassName="!px-12 !py-6 !items-start !flex-col">
         <div className="flex w-full flex-col gap-4">
           <div className="flex flex-wrap gap-2">
             {categoryFilters.map((filter) => (
@@ -149,6 +149,7 @@ export default function AidesOuvertes() {
             key={aid?.id ?? index}
             name={aid ? aid.organism : 'Chargement'}
             type={aid ? aid.projectType : 'Aide ouverte'}
+            hideLabel
             contentClassName="!px-0 !py-0 !gap-0 !items-stretch"
           >
             <div className="grid w-full lg:grid-cols-[minmax(0,1fr)_260px]">
@@ -212,7 +213,7 @@ export default function AidesOuvertes() {
       })}
 
       {payload && filteredItems.length === 0 ? (
-        <Track name="Aucun résultat" type="Changer les filtres" contentClassName="!px-12 !py-8">
+        <Track name="Aucun résultat" type="Changer les filtres" hideLabel contentClassName="!px-12 !py-8">
           <p className="font-body text-[0.96rem] leading-[1.8] text-soft">
             Aucun dispositif ne correspond à ces filtres pour le moment. Essaie un autre type de
             projet ou lance le diagnostic pour vérifier les pistes proches.

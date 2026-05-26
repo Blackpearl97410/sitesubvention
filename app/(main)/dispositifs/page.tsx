@@ -74,17 +74,10 @@ export default function Page() {
           name={dispositif.short}
           type={dispositif.title}
           armed={dispositif.slug === 'cnm'}
+          hideLabel
           contentClassName="!px-0 !py-0 !gap-0 !items-stretch"
         >
-          <div className="grid w-full lg:grid-cols-[120px_minmax(0,1fr)_240px]">
-            <div className="border-r border-rule px-10 py-10">
-              <span
-                className="font-cond font-black uppercase tracking-[-0.03em] text-rule-dark"
-                style={{ fontSize: 'clamp(1.1rem, 2vw, 1.8rem)' }}
-              >
-                {dispositif.short}
-              </span>
-            </div>
+          <div className="grid w-full lg:grid-cols-[minmax(0,1fr)_240px]">
             <div className="px-10 py-10">
               <h2
                 className="font-cond font-extrabold uppercase leading-[0.95] tracking-[-0.03em] text-black mb-4"

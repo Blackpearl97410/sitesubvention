@@ -15,6 +15,7 @@ type Answers = {
   prenom: string
   email: string
   phone: string
+  description: string
 }
 
 const STEPS = ['Statut', 'Projet', 'Budget', 'Contact']
@@ -53,7 +54,7 @@ const slideIn = {
 export default function DiagnosticFunnel() {
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState<Answers>({
-    statut: '', projet: '', budget: '', prenom: '', email: '', phone: '',
+    statut: '', projet: '', budget: '', prenom: '', email: '', phone: '', description: '',
   })
   const [submitted, setSubmitted] = useState(false)
   const [sending, setSending] = useState(false)
@@ -82,6 +83,7 @@ export default function DiagnosticFunnel() {
           status: answers.statut,
           projectType: answers.projet,
           budget: answers.budget,
+          message: answers.description,
         }),
       })
 
@@ -120,7 +122,7 @@ export default function DiagnosticFunnel() {
         }}
       >
         <div
-          className="daw-mobile-hidden flex-shrink-0 border-r flex items-center px-5"
+          className="flex-shrink-0 border-r flex items-center px-5"
           style={{ width: 'var(--label-w)', borderColor: 'var(--rule-dark)' }}
         >
           <span className="font-mono text-[0.5625rem] tracking-[0.14em] uppercase" style={{ color: 'var(--dim)' }}>
@@ -155,7 +157,7 @@ export default function DiagnosticFunnel() {
       >
         {/* Label col */}
         <div
-          className="daw-mobile-hidden flex-shrink-0 border-r flex flex-col justify-between py-12 px-5"
+          className="flex-shrink-0 border-r flex flex-col justify-between py-12 px-5"
           style={{
             width: 'var(--label-w)',
             background: 'var(--track-bg)',
@@ -337,6 +339,23 @@ export default function DiagnosticFunnel() {
                             onChange={e => setAnswers(a => ({ ...a, phone: e.target.value }))}
                             placeholder="+262..., +33..., WhatsApp..."
                             className="px-5 py-3 rounded-lg border font-body text-[0.95rem] outline-none transition-all"
+                            style={{
+                              background: 'var(--surface-2)',
+                              borderColor: 'var(--rule-dark)',
+                              color: 'var(--black)',
+                            }}
+                          />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          <label className="font-mono text-[0.5625rem] tracking-[0.14em] uppercase" style={{ color: 'var(--dim)' }}>
+                            Description du projet facultative
+                          </label>
+                          <textarea
+                            value={answers.description}
+                            onChange={e => setAnswers(a => ({ ...a, description: e.target.value }))}
+                            placeholder="Quelques lignes sur ton projet, le dispositif envisagé, les délais ou le blocage actuel..."
+                            rows={4}
+                            className="resize-y px-5 py-3 rounded-lg border font-body text-[0.95rem] leading-[1.6] outline-none transition-all"
                             style={{
                               background: 'var(--surface-2)',
                               borderColor: 'var(--rule-dark)',

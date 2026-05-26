@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
 import { Barlow_Condensed, Barlow, Space_Mono } from 'next/font/google'
-import Script from 'next/script'
 import MotionProvider from '@/components/motion/MotionProvider'
 import JsonLd from '@/components/seo/JsonLd'
-import DeviceTypeProvider from '@/components/system/DeviceTypeProvider'
 import { seoKeywords, siteConfig } from '@/lib/seo'
 import { colors, layout } from '@/lib/tokens'
 import './globals.css'
@@ -29,10 +27,6 @@ const spaceMono = Space_Mono({
   display: 'swap',
 })
 
-const googleAnalyticsIds = ['G-RV696ZWMXX', 'G-FZEX2C0F4N']
-const googleAdsId = 'AW-17697827383'
-const googleTagIds = [...googleAnalyticsIds, googleAdsId]
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   applicationName: siteConfig.name,
@@ -49,6 +43,15 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon-32.png', type: 'image/png', sizes: '32x32' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
+  manifest: '/site.webmanifest',
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.description,
@@ -116,19 +119,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       }
     >
       <body style={{ backgroundColor: colors.white, color: colors.ink }}>
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            ${googleTagIds.map((id) => `gtag('config', '${id}');`).join('\n            ')}
-          `}
-        </Script>
-        <DeviceTypeProvider />
         <JsonLd />
         <MotionProvider>{children}</MotionProvider>
       </body>
