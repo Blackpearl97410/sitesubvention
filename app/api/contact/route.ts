@@ -14,8 +14,9 @@ type ContactPayload = {
 }
 
 const RESEND_ENDPOINT = 'https://api.resend.com/emails'
-const defaultRecipient = 'lablackbox974@gmail.com'
+const defaultRecipient = 'unisonore@gmail.com'
 const fallbackContactEmail = 'contact@dossier-studio.fr'
+const defaultFromEmail = 'Dossier Studio <contact@dossier-studio.fr>'
 const emailTheme = {
   black: '#111111',
   ink: '#F3F1EA',
@@ -445,7 +446,7 @@ export async function POST(request: Request) {
   }
 
   const apiKey = process.env.RESEND_API_KEY
-  const from = process.env.RESEND_FROM_EMAIL || 'Dossier Studio <onboarding@resend.dev>'
+  const from = process.env.RESEND_FROM_EMAIL || defaultFromEmail
   const to = process.env.CONTACT_TO_EMAIL || defaultRecipient
   const contactEmail = process.env.PUBLIC_CONTACT_EMAIL || to || fallbackContactEmail
   const autoReplyEnabled = process.env.RESEND_AUTO_REPLY !== 'false'
