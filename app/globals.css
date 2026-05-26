@@ -38,6 +38,7 @@
 html {
   scroll-behavior: smooth;
   font-family: var(--font-barlow), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 body {
@@ -255,7 +256,7 @@ main > * {
 @media (max-width: 768px) {
   :root {
     --label-w:  0px;
-    --nav-h: 116px !important;
+    --nav-h: 64px !important;
     --fs-hero:  clamp(2.5rem, 10vw, 5rem);
     --fs-h2:    clamp(1.5rem, 6vw, 2.5rem);
     --fs-stat:  clamp(2rem, 8vw, 4rem);
@@ -265,6 +266,15 @@ main > * {
   body {
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch;
+    padding-bottom: 76px;
+  }
+
+  .mobile-no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .mobile-no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 
   /* Permettre le scroll horizontal sur les sections si nécessaire */

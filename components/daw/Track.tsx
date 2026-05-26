@@ -17,7 +17,7 @@ export default function Track({ name, type, armed, children, className, contentC
     <div className={clsx('flex border-b border-rule', className)}>
       {hideLabel ? null : <TrackLabel name={name} type={type} armed={armed} />}
       <div
-        className={clsx('flex-1 flex items-center px-10 py-3 gap-4', contentClassName)}
+        className={clsx('flex-1 flex min-w-0 items-center gap-4 px-4 py-3 md:px-10', contentClassName)}
         style={{
           background: 'var(--surface)',
           backdropFilter: 'blur(8px)',

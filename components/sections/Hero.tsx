@@ -73,10 +73,10 @@ export default function Hero() {
       <Parallax target={sectionRef} offset={14}>
         <Reveal viewportMargin="-16px" variant="fadeOnly">
           <div className="flex items-stretch border-b border-rule" style={{ height: 46, background: 'var(--paper)' }}>
-            <div className="daw-mobile-hidden flex-shrink-0 border-r border-rule-dark flex items-center px-5" style={{ width: 'var(--label-w)' }}>
+            <div className="hidden flex-shrink-0 items-center border-r border-rule-dark px-5 md:flex" style={{ width: 'var(--label-w)' }}>
               <span className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-soft">Financeurs suivis</span>
             </div>
-            <div className="flex-1 flex items-center px-8 gap-7 overflow-x-auto">
+            <div className="mobile-no-scrollbar flex flex-1 items-center gap-5 overflow-x-auto px-4 md:gap-7 md:px-8">
               {tags.map((t, i) => (
                 <motion.span
                   key={t}
@@ -95,7 +95,7 @@ export default function Hero() {
 
       <StaggerGroup delayChildren={0.08}>
         <StaggerItem>
-          <Track name="Promesse" type="Aides non demandées" armed contentClassName="!min-h-[380px] !items-stretch !py-18 !px-12">
+          <Track name="Promesse" type="Aides non demandées" armed contentClassName="!min-h-[500px] !items-stretch !px-5 !py-12 md:!min-h-[380px] md:!px-12 md:!py-18">
             <div className="relative grid w-full gap-10 overflow-hidden lg:grid-cols-[minmax(0,1fr)_260px] lg:items-end">
               <div
                 className="pointer-events-none absolute inset-y-0 right-0 w-[56%] opacity-70"
@@ -122,7 +122,7 @@ export default function Hero() {
                 </p>
                 <MaskedLines
                   as="h1"
-                  className="font-cond font-black uppercase text-black leading-[0.84] tracking-[-0.04em] max-w-[980px]"
+                  className="hidden font-cond font-black uppercase text-black leading-[0.84] tracking-[-0.04em] max-w-[980px] md:block"
                   lineClassName="pb-[0.08em]"
                   delay={0.18}
                   style={{ fontSize: 'var(--fs-hero)' }}
@@ -131,6 +131,11 @@ export default function Hero() {
                     <>que tu ne demandes <span className="text-accent">plus.</span></>,
                   ]}
                 />
+                <h1
+                  className="font-cond text-[3.15rem] font-black uppercase leading-[0.86] tracking-[-0.02em] text-black md:hidden"
+                >
+                  Tu es éligible à des aides que tu ne demandes <span className="text-accent">plus.</span>
+                </h1>
               </Parallax>
 
               <Reveal
@@ -151,7 +156,7 @@ export default function Hero() {
         </StaggerItem>
 
         <StaggerItem>
-          <Track name="Pour qui" type="Projet musical" contentClassName="!py-12 !px-12 !items-start">
+          <Track name="Pour qui" type="Projet musical" contentClassName="!items-start !px-5 !py-10 md:!px-12 md:!py-12">
             <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(220px,300px)]">
               <Parallax target={sectionRef} offset={10} className="pt-4 relative before:absolute before:top-0 before:left-0 before:w-12 before:h-0.5 before:bg-dim">
                 <p className="font-mono text-[0.4rem] tracking-[0.18em] uppercase text-dim mb-4">
@@ -181,19 +186,19 @@ export default function Hero() {
         </StaggerItem>
 
         <StaggerItem>
-          <Track name="Manque à gagner" type="Aides non demandées" armed contentClassName="hero-stat-track !py-12 !px-12 !gap-16">
-            <Parallax target={sectionRef} offset={16} className="hero-stat-value pt-4 relative before:absolute before:top-0 before:left-0 before:w-16 before:h-0.5 before:bg-accent flex-shrink-0">
+          <Track name="Manque à gagner" type="Aides non demandées" armed contentClassName="!flex-col !items-start !gap-7 !px-5 !py-10 md:!flex-row md:!gap-16 md:!px-12 md:!py-12">
+            <Parallax target={sectionRef} offset={16} className="pt-4 relative before:absolute before:top-0 before:left-0 before:w-16 before:h-0.5 before:bg-accent flex-shrink-0">
               <p className="font-mono text-[0.4rem] tracking-[0.18em] uppercase text-accent mb-4">
                 Aides non demandées
               </p>
               <p
-                className="hero-stat-counter font-cond font-black tracking-[-0.02em] text-black leading-none"
+                className="font-cond font-black tracking-[-0.02em] text-black leading-none"
                 style={{ fontSize: 'var(--fs-stat)' }}
               >
                 <span className="text-accent">5 000</span> – 30 000 €
               </p>
             </Parallax>
-            <p className="hero-stat-note font-body font-normal text-soft text-[0.95rem] leading-[1.85] max-w-sm border-l border-rule-dark pl-8">
+            <p className="font-body font-normal text-soft text-[0.95rem] leading-[1.85] max-w-sm border-l border-rule-dark pl-8">
               Par dossier non déposé — multipliés par 2, 3, 4 ans d'absence, parce que le dossier
               prenait trop de place dans ton agenda.
             </p>
@@ -202,7 +207,7 @@ export default function Hero() {
       </StaggerGroup>
 
       <Reveal viewportMargin="-24px" variant="fadeOnly">
-        <Track name="Diagnostic" type="Premier échange" contentClassName="hero-diagnostic-track !py-6 !px-12 !gap-5">
+        <Track name="Diagnostic" type="Premier échange" contentClassName="!flex-col !items-stretch !gap-4 !px-5 !py-6 md:!flex-row md:!items-center md:!gap-5 md:!px-12">
           <Magnetic strength={12}>
             <motion.div
               style={{ background: 'linear-gradient(135deg, var(--accent), #d86a47)', boxShadow: '0 18px 40px rgba(200,82,50,0.2)' }}
@@ -226,7 +231,7 @@ export default function Hero() {
               </Link>
             </motion.div>
           </Magnetic>
-          <div className="hero-availability ml-auto flex items-center gap-2">
+          <div className="flex items-center gap-2 md:ml-auto">
             <span className="w-[6px] h-[6px] rounded-full bg-accent" style={{ animation: 'pulse-soft 2.5s ease-in-out infinite' }} />
             <span className="font-mono text-[0.6875rem] tracking-[0.14em] uppercase text-dim">
               Disponible · {territoryLabel}
@@ -237,7 +242,7 @@ export default function Hero() {
 
       <Reveal viewportMargin="-12px" variant="fadeOnly">
         <Track name="Suite" type="Parcours" contentClassName="!py-0 !h-10 !min-h-[40px]">
-          <div ref={waveRef} className="flex items-center gap-[1.5px] w-full h-6" />
+          <div ref={waveRef} className="flex h-6 w-full items-center gap-[1.5px] overflow-hidden" />
         </Track>
       </Reveal>
     </section>

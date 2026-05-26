@@ -122,20 +122,20 @@ export default function DiagnosticFunnel() {
         }}
       >
         <div
-          className="flex-shrink-0 border-r flex items-center px-5"
+          className="hidden flex-shrink-0 items-center border-r px-5 md:flex"
           style={{ width: 'var(--label-w)', borderColor: 'var(--rule-dark)' }}
         >
           <span className="font-mono text-[0.5625rem] tracking-[0.14em] uppercase" style={{ color: 'var(--dim)' }}>
             Étape {step + 1}/{STEPS.length}
           </span>
         </div>
-        <div className="flex-1 flex items-center px-8 gap-3">
+        <div className="mobile-no-scrollbar flex flex-1 items-center gap-3 overflow-x-auto px-4 md:px-8">
           {STEPS.map((s, i) => (
-            <div key={s} className="flex items-center gap-2">
+            <div key={s} className="flex flex-shrink-0 items-center gap-2">
               <div
                 className="h-1 rounded-full transition-all duration-500"
                 style={{
-                  width: 48,
+                  width: 34,
                   background: i <= step ? 'var(--accent)' : 'var(--rule)',
                 }}
               />
@@ -157,7 +157,7 @@ export default function DiagnosticFunnel() {
       >
         {/* Label col */}
         <div
-          className="flex-shrink-0 border-r flex flex-col justify-between py-12 px-5"
+          className="hidden flex-shrink-0 flex-col justify-between border-r px-5 py-12 md:flex"
           style={{
             width: 'var(--label-w)',
             background: 'var(--track-bg)',
@@ -176,7 +176,7 @@ export default function DiagnosticFunnel() {
         </div>
 
         {/* Content */}
-        <div className="flex-1 flex items-center justify-center px-8 py-16" style={{ background: 'var(--surface)' }}>
+        <div className="flex-1 flex items-center justify-center px-5 py-10 md:px-8 md:py-16" style={{ background: 'var(--surface)' }}>
           <div className="w-full max-w-2xl">
             <AnimatePresence mode="wait">
               {!submitted ? (
@@ -194,12 +194,12 @@ export default function DiagnosticFunnel() {
                       >
                         Quel est ton statut<br />juridique actuel ?
                       </h2>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
                         {STATUTS.map(opt => (
                           <button
                             key={opt.value}
                             onClick={() => pick('statut', opt.value)}
-                            className="text-left px-6 py-5 border rounded-xl font-cond font-bold uppercase tracking-[0.04em] text-[1.05rem] transition-all duration-200 hover:-translate-y-0.5"
+                            className="min-h-[76px] text-left px-5 py-4 border rounded-xl font-cond font-bold uppercase tracking-[0.04em] text-[1rem] transition-all duration-200 hover:-translate-y-0.5 md:px-6 md:py-5 md:text-[1.05rem]"
                             style={{
                               borderColor: answers.statut === opt.value ? 'var(--accent)' : 'var(--rule-dark)',
                               background: answers.statut === opt.value ? 'rgba(200,82,50,0.08)' : 'var(--surface-2)',
@@ -226,12 +226,12 @@ export default function DiagnosticFunnel() {
                       >
                         Sur quel type de projet<br />cherches-tu des financements ?
                       </h2>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-4">
                         {PROJETS.map(opt => (
                           <button
                             key={opt.value}
                             onClick={() => pick('projet', opt.value)}
-                            className="text-left px-6 py-5 border rounded-xl font-cond font-bold uppercase tracking-[0.04em] text-[1.05rem] transition-all duration-200 hover:-translate-y-0.5"
+                            className="min-h-[76px] text-left px-5 py-4 border rounded-xl font-cond font-bold uppercase tracking-[0.04em] text-[1rem] transition-all duration-200 hover:-translate-y-0.5 md:px-6 md:py-5 md:text-[1.05rem]"
                             style={{
                               borderColor: answers.projet === opt.value ? 'var(--accent)' : 'var(--rule-dark)',
                               background: answers.projet === opt.value ? 'rgba(200,82,50,0.08)' : 'var(--surface-2)',
@@ -263,7 +263,7 @@ export default function DiagnosticFunnel() {
                           <button
                             key={opt.value}
                             onClick={() => pick('budget', opt.value)}
-                            className="text-left px-8 py-5 border rounded-xl font-cond font-bold uppercase tracking-[0.04em] text-[1.15rem] transition-all duration-200 hover:-translate-y-0.5"
+                            className="text-left px-5 py-4 border rounded-xl font-cond font-bold uppercase tracking-[0.04em] text-[1rem] transition-all duration-200 hover:-translate-y-0.5 md:px-8 md:py-5 md:text-[1.15rem]"
                             style={{
                               borderColor: answers.budget === opt.value ? 'var(--accent)' : 'var(--rule-dark)',
                               background: answers.budget === opt.value ? 'rgba(200,82,50,0.08)' : 'var(--surface-2)',
@@ -291,7 +291,7 @@ export default function DiagnosticFunnel() {
                         Comment te contacter<br />pour le verdict ?
                       </h2>
                       <div className="flex flex-col gap-5">
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                           <div className="flex flex-col gap-2">
                             <label className="font-mono text-[0.5625rem] tracking-[0.14em] uppercase" style={{ color: 'var(--dim)' }}>
                               Prénom *
@@ -366,7 +366,7 @@ export default function DiagnosticFunnel() {
                         <button
                           type="submit"
                           disabled={sending}
-                          className="mt-4 px-10 py-4 rounded-xl font-cond font-black uppercase tracking-[0.06em] text-[1rem] transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-60"
+                          className="mt-4 w-full px-6 py-4 rounded-xl font-cond font-black uppercase tracking-[0.06em] text-[0.95rem] transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-60 md:px-10 md:text-[1rem]"
                           style={{
                             background: 'linear-gradient(135deg, var(--accent), #d86a47)',
                             color: '#fff',

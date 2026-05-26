@@ -272,6 +272,9 @@ function buildOwnerText(payload: ReturnType<typeof normalizePayload>) {
       `Statut : ${payload.statusLabel}`,
       `Projet : ${payload.projectLabel}`,
       `Budget : ${payload.budgetLabel}`,
+      '',
+      'Description du projet :',
+      payload.message || 'Non renseigné',
     ].join('\n')
   }
 
@@ -306,6 +309,7 @@ function buildOwnerHtml(payload: ReturnType<typeof normalizePayload>) {
           ['Statut', payload.statusLabel],
           ['Projet', payload.projectLabel],
           ['Budget', payload.budgetLabel],
+          ['Description du projet', payload.message || 'Non renseigné'],
         ]
       : [
           ['Prénom', payload.firstName],

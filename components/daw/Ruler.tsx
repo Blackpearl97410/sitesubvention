@@ -42,7 +42,7 @@ export default function Ruler({ label = 'Session · 2025', playheadDelay = 0, pl
 
   return (
     <motion.div
-      className="daw-ruler sticky z-[150] flex border-b border-rule-dark"
+      className="sticky z-[150] flex border-b border-rule-dark"
       style={{ y, top: 'var(--nav-h)' }}
     >
       <div
@@ -56,7 +56,7 @@ export default function Ruler({ label = 'Session · 2025', playheadDelay = 0, pl
         {/* Gutter */}
         {hideLabel ? null : (
           <div
-            className="daw-mobile-hidden flex-shrink-0 border-r border-rule-dark flex items-center px-5"
+            className="hidden flex-shrink-0 items-center border-r border-rule-dark px-5 md:flex"
             style={{ width: 'var(--label-w)' }}
           >
             <span className="font-mono text-[0.5625rem] tracking-[0.14em] uppercase text-dim">{label}</span>

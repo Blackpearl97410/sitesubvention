@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Magnetic from '@/components/motion/Magnetic'
-import RollingText from '@/components/motion/RollingText'
 import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton'
 import { motionTiming } from '@/lib/tokens'
 
@@ -30,8 +29,9 @@ export default function Nav() {
   }, [])
 
   return (
+    <>
     <nav
-      className="fixed top-0 left-0 right-0 z-[500] isolate flex items-stretch transition-colors"
+      className="fixed top-0 left-0 right-0 z-[500] isolate flex items-stretch overflow-hidden transition-colors"
       style={{
         height: 'var(--nav-h)',
         background: navBg,
@@ -44,8 +44,8 @@ export default function Nav() {
     >
       {/* Logo */}
       <div
-        className="flex-shrink-0 flex items-center px-5 border-r"
-        style={{ width: 'var(--label-w)', borderColor: navBorderStrong }}
+        className="flex w-[136px] flex-shrink-0 items-center border-r px-3 md:w-[var(--label-w)] md:px-5"
+        style={{ borderColor: navBorderStrong }}
       >
         <motion.div whileHover={{ x: 2 }} transition={{ duration: 0.18 }}>
           <Link
@@ -65,7 +65,7 @@ export default function Nav() {
       </div>
 
       {/* Links */}
-      <ul className="flex items-center gap-3 flex-1 px-10 list-none m-0 p-0">
+      <ul className="mobile-no-scrollbar m-0 flex min-w-0 flex-1 list-none items-center gap-1 overflow-x-auto px-2 py-0 md:gap-3 md:overflow-visible md:px-10">
         {links.map((l) => (
           <motion.li key={l.href} whileHover={{ y: -1 }} transition={{ duration: 0.18 }}>
             {(() => {
@@ -74,11 +74,11 @@ export default function Nav() {
                 <LiquidGlassButton
                   href={l.href}
                   active={isActive}
-                  size="md"
-                  className={isActive ? navText : navTextSoft}
+                  size="sm"
+                  className={isActive ? `${navText} px-3 text-[0.64rem] md:px-5 md:text-[0.75rem]` : `${navTextSoft} px-3 text-[0.64rem] md:px-5 md:text-[0.75rem]`}
                   contentClassName={isActive ? navText : navTextSoft}
                 >
-                  <span className="inline-flex items-center gap-2">
+                  <span className="inline-flex items-center gap-2 whitespace-nowrap">
                     {isActive ? <span className="h-1.5 w-1.5 rounded-full bg-accent" /> : null}
                     <span className="leading-none">{l.label}</span>
                   </span>
@@ -92,6 +92,7 @@ export default function Nav() {
       {/* CTA */}
       <Magnetic strength={10}>
         <motion.div
+          className="hidden md:block"
           whileHover={{ y: -1.5, scale: 1.01 }}
           whileTap={{ scale: 0.99 }}
           transition={{ duration: 0.24, ease: motionTiming.ease }}
@@ -110,5 +111,14 @@ export default function Nav() {
         </motion.div>
       </Magnetic>
     </nav>
+    {pathname !== '/diagnostic' ? (
+      <Link
+        href="/diagnostic"
+        className="fixed bottom-4 left-4 right-4 z-[520] inline-flex h-12 items-center justify-center rounded-full border border-[rgba(243,241,234,0.28)] bg-[linear-gradient(135deg,#c85232,#dc7551)] font-cond text-[0.76rem] font-bold uppercase tracking-[0.14em] text-white shadow-[0_18px_44px_rgba(0,0,0,0.26),0_14px_36px_rgba(200,82,50,0.28)] md:hidden"
+      >
+        Diagnostic gratuit
+      </Link>
+    ) : null}
+    </>
   )
 }

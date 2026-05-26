@@ -71,7 +71,7 @@ export default function AidesOuvertes() {
       id="aides-ouvertes"
       style={{ borderBottom: '2px solid var(--black)', scrollMarginTop: 'var(--nav-h)' }}
     >
-      <Track name="Aides ouvertes" type="Mise à jour 24h" armed hideLabel contentClassName="!py-12 !px-12 !items-start">
+      <Track name="Aides ouvertes" type="Mise à jour 24h" armed hideLabel contentClassName="!items-start !px-5 !py-10 md:!px-12 md:!py-12">
         <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1fr)_330px]">
           <div className="flex flex-col gap-5">
             <span className="font-mono text-[0.4375rem] tracking-[0.18em] uppercase text-accent">
@@ -90,7 +90,7 @@ export default function AidesOuvertes() {
               avec des filtres utiles pour qualifier rapidement ton projet.
             </p>
           </div>
-          <div className="border-l border-rule-dark pl-8 pt-1">
+          <div className="border-t border-rule-dark pt-6 md:border-l md:border-t-0 md:pl-8 md:pt-1">
             <p className="mb-3 font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-dim">
               Source
             </p>
@@ -105,7 +105,7 @@ export default function AidesOuvertes() {
         </div>
       </Track>
 
-      <Track name="Filtres" type="Projet / profil" hideLabel contentClassName="!px-12 !py-6 !items-start !flex-col">
+      <Track name="Filtres" type="Projet / profil" hideLabel contentClassName="!flex-col !items-start !px-5 !py-6 md:!px-12">
         <div className="flex w-full flex-col gap-4">
           <div className="flex flex-wrap gap-2">
             {categoryFilters.map((filter) => (
@@ -153,7 +153,7 @@ export default function AidesOuvertes() {
             contentClassName="!px-0 !py-0 !gap-0 !items-stretch"
           >
             <div className="grid w-full lg:grid-cols-[minmax(0,1fr)_260px]">
-              <div className="px-12 py-8">
+              <div className="px-5 py-8 md:px-12">
                 <p className="mb-3 font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-accent">
                   {aid ? aid.sourceName : 'Synchronisation'}
                 </p>
@@ -179,7 +179,7 @@ export default function AidesOuvertes() {
                   </div>
                 ) : null}
               </div>
-              <div className="flex flex-col justify-between border-l border-rule px-8 py-8" style={{ background: 'var(--surface-2)' }}>
+              <div className="flex flex-col justify-between border-t border-rule px-5 py-7 md:border-l md:border-t-0 md:px-8 md:py-8" style={{ background: 'var(--surface-2)' }}>
                 <div>
                   <p className="mb-2 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-dim">
                     Date limite
@@ -213,7 +213,7 @@ export default function AidesOuvertes() {
       })}
 
       {payload && filteredItems.length === 0 ? (
-        <Track name="Aucun résultat" type="Changer les filtres" hideLabel contentClassName="!px-12 !py-8">
+        <Track name="Aucun résultat" type="Changer les filtres" hideLabel contentClassName="!px-5 !py-8 md:!px-12">
           <p className="font-body text-[0.96rem] leading-[1.8] text-soft">
             Aucun dispositif ne correspond à ces filtres pour le moment. Essaie un autre type de
             projet ou lance le diagnostic pour vérifier les pistes proches.

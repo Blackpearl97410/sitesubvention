@@ -23,7 +23,7 @@ export default function Page() {
       <BreadcrumbJsonLd items={[{ name: 'Dispositifs', path: '/dispositifs' }]} />
       <Ruler label="Dispositifs" playheadDuration={20} />
 
-      <Track name="Dispositifs" type="Aides à activer" armed contentClassName="!py-16 !px-12 !items-start">
+      <Track name="Dispositifs" type="Aides à activer" armed contentClassName="!items-start !px-5 !py-12 md:!px-12 md:!py-16">
         <div className="relative grid w-full gap-10 overflow-hidden lg:grid-cols-[minmax(0,1fr)_320px]">
           <BackgroundGradientAnimation
             interactive={false}
@@ -50,13 +50,13 @@ export default function Page() {
               <br />
               utiles à activer.
             </h1>
-            <p className="font-body text-[1.04rem] leading-[1.9] text-soft max-w-[760px]">
+            <p className="font-body text-[1rem] leading-[1.85] text-soft max-w-[760px] md:text-[1.04rem]">
               Tous les projets ne relèvent pas des mêmes financeurs. L&apos;enjeu n&apos;est pas de déposer
               partout, mais de cibler les bons dispositifs, dans le bon ordre, avec un dossier à la hauteur.
               La veille des aides ouvertes est centralisée ici pour comparer rapidement les pistes utiles.
             </p>
           </div>
-          <div className="relative z-10 border-l border-rule-dark pl-8 pt-1">
+          <div className="relative z-10 border-t border-rule-dark pt-6 md:border-l md:border-t-0 md:pl-8 md:pt-1">
             <p className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-dim mb-3">Lecture</p>
             <p className="font-body text-[0.95rem] leading-[1.8] text-soft">
               CNM, SPEDIDAM, ADAMI, SACEM, Régions, DAC, collectivités et appels à projets : chaque
@@ -78,7 +78,7 @@ export default function Page() {
           contentClassName="!px-0 !py-0 !gap-0 !items-stretch"
         >
           <div className="grid w-full lg:grid-cols-[minmax(0,1fr)_240px]">
-            <div className="px-10 py-10">
+            <div className="px-5 py-8 md:px-10 md:py-10">
               <h2
                 className="font-cond font-extrabold uppercase leading-[0.95] tracking-[-0.03em] text-black mb-4"
                 style={{ fontSize: 'clamp(1.45rem, 2.35vw, 2.2rem)' }}
@@ -89,7 +89,7 @@ export default function Page() {
                 {dispositif.summary}
               </p>
             </div>
-            <div className="border-l border-rule px-10 py-10 flex items-end justify-between lg:flex-col lg:items-end lg:justify-between" style={{ background: 'var(--surface-2)' }}>
+            <div className="flex items-center justify-between border-t border-rule px-5 py-6 md:border-l md:border-t-0 md:px-10 md:py-10 lg:flex-col lg:items-end lg:justify-between" style={{ background: 'var(--surface-2)' }}>
               <p className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-dim">
                 Guichet détaillé
               </p>
@@ -104,7 +104,7 @@ export default function Page() {
         </Track>
       ))}
 
-      <Track name="Diagnostic" type="Trouver le bon guichet" contentClassName="!py-8 !px-12 !gap-6">
+      <Track name="Diagnostic" type="Trouver le bon guichet" contentClassName="!flex-col !items-stretch !gap-5 !px-5 !py-8 md:!flex-row md:!items-center md:!gap-6 md:!px-12">
         <div className="flex-1">
           <p className="font-cond font-bold uppercase tracking-[0.08em] text-black text-[0.95rem] mb-2">
             Tu n&apos;es pas sûr du bon guichet ?

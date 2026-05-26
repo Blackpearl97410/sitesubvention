@@ -77,7 +77,7 @@ export default function OffersPricingSpotlight() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(200,82,50,0.2),transparent_28%),linear-gradient(180deg,rgba(17,17,17,0.08),rgba(17,17,17,0.42))]" />
 
         <div className="relative z-10 grid gap-0 xl:grid-cols-[minmax(0,1fr)_360px]">
-          <div className="border-r border-[rgba(243,241,234,0.14)] px-12 py-12">
+          <div className="border-r border-[rgba(243,241,234,0.14)] px-5 py-10 md:px-12 md:py-12">
             <div className="mb-9 flex flex-col gap-5">
               <span className="font-mono text-[0.75rem] tracking-[0.16em] uppercase text-accent">
                 Grille tarifaire
@@ -97,7 +97,7 @@ export default function OffersPricingSpotlight() {
             </div>
 
             <div className="overflow-hidden border border-[rgba(243,241,234,0.14)] bg-[rgba(255,255,255,0.05)] backdrop-blur-xl">
-              <div className="grid border-b border-[rgba(243,241,234,0.12)] bg-[rgba(255,255,255,0.05)] lg:grid-cols-[minmax(0,1fr)_190px_230px]">
+              <div className="hidden border-b border-[rgba(243,241,234,0.12)] bg-[rgba(255,255,255,0.05)] lg:grid lg:grid-cols-[minmax(0,1fr)_190px_230px]">
                 {['Accompagnement', 'Socle fixe', 'Commission'].map((head) => (
                   <p
                     key={head}
@@ -123,11 +123,17 @@ export default function OffersPricingSpotlight() {
                     </p>
                   </div>
                   <div className="border-t border-[rgba(243,241,234,0.08)] px-6 py-5 lg:border-r lg:border-t-0 lg:border-[rgba(243,241,234,0.1)]">
+                    <p className="mb-1 font-mono text-[0.64rem] tracking-[0.14em] uppercase text-[rgba(243,241,234,0.48)] lg:hidden">
+                      Socle fixe
+                    </p>
                     <p className="font-cond text-[1.15rem] font-black uppercase leading-tight text-white">
                       {plan.fixed}
                     </p>
                   </div>
                   <div className="border-t border-[rgba(243,241,234,0.08)] px-6 py-5 lg:border-t-0">
+                    <p className="mb-1 font-mono text-[0.64rem] tracking-[0.14em] uppercase text-[rgba(243,241,234,0.48)] lg:hidden">
+                      Commission
+                    </p>
                     <p className="font-body text-[0.96rem] leading-[1.7] text-[rgba(243,241,234,0.82)]">
                       {plan.variable}
                     </p>
@@ -137,7 +143,7 @@ export default function OffersPricingSpotlight() {
             </div>
           </div>
 
-          <div className="flex flex-col justify-between gap-8 px-10 py-12">
+          <div className="flex flex-col justify-between gap-8 px-5 py-10 md:px-10 md:py-12">
             <div className="space-y-6">
               <div className="border border-[rgba(243,241,234,0.12)] bg-[rgba(255,255,255,0.04)] px-6 py-6 backdrop-blur-lg">
                 <p className="mb-3 font-mono text-[0.75rem] tracking-[0.14em] uppercase text-accent">
