@@ -16,7 +16,7 @@ type ContactPayload = {
 const RESEND_ENDPOINT = 'https://api.resend.com/emails'
 const defaultRecipient = 'unisonore@gmail.com'
 const fallbackContactEmail = 'contact@dossier-studio.fr'
-const defaultFromEmail = 'Dossier Studio <contact@dossier-studio.fr>'
+const defaultFromEmail = `Dossier Studio <${fallbackContactEmail}>`
 const emailTheme = {
   black: '#111111',
   ink: '#F3F1EA',

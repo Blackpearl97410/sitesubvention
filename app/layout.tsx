@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Barlow_Condensed, Barlow, Space_Mono } from 'next/font/google'
+import Analytics from '@/components/analytics/Analytics'
 import MotionProvider from '@/components/motion/MotionProvider'
 import JsonLd from '@/components/seo/JsonLd'
 import { seoKeywords, siteConfig } from '@/lib/seo'
@@ -120,6 +121,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body style={{ backgroundColor: colors.white, color: colors.ink }}>
         <JsonLd />
+        <Analytics />
         <MotionProvider>{children}</MotionProvider>
       </body>
     </html>

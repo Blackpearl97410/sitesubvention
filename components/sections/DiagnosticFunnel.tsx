@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import CalFloatingPopup, { openDiagnosticCal } from '@/components/diagnostic/CalFloatingPopup'
+import { trackEvent } from '@/lib/analytics'
 import { motionTiming } from '@/lib/tokens'
 import Ruler from '@/components/daw/Ruler'
 
@@ -93,6 +94,12 @@ export default function DiagnosticFunnel() {
       }
 
       setSubmitted(true)
+      trackEvent('diagnostic_submit', {
+        form_name: 'diagnostic',
+        status: answers.statut,
+        project_type: answers.projet,
+        budget: answers.budget,
+      })
     } catch (error) {
       setSubmitError(
         error instanceof Error

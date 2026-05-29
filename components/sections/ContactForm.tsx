@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { FormEvent, useState } from 'react'
+import { trackEvent } from '@/lib/analytics'
 
 const fieldClass =
   'w-full border-0 border-b border-rule bg-transparent px-0 py-3 font-body text-[1rem] text-ink outline-none placeholder:text-dim focus:border-accent'
@@ -38,6 +39,10 @@ export default function ContactForm() {
       }
 
       setStatus('sent')
+      trackEvent('contact_form_submit', {
+        form_name: 'contact',
+        has_phone: Boolean(phone),
+      })
       setFirstName('')
       setEmail('')
       setPhone('')
