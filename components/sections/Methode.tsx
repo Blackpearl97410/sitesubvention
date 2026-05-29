@@ -84,7 +84,7 @@ export default function Methode() {
       ))}
 
       <Track name="En détail" type="Page méthode" contentClassName="!py-5 !px-12">
-        <Link href="/methode" className="font-cond font-bold text-[0.5625rem] tracking-[0.16em] uppercase text-accent hover:underline">
+        <Link href="/comment-ca-fonctionne" className="font-cond font-bold text-[0.5625rem] tracking-[0.16em] uppercase text-accent hover:underline">
           <RollingText text="Voir la méthode en détail →" animateOnHover={false} />
         </Link>
       </Track>
