@@ -46,19 +46,6 @@ function FloatingPaths({ position }: { position: number }) {
   )
 }
 
-const pillars = [
-  {
-    label: 'Socle fixe',
-    title: "Frais d'ingénierie",
-    body: "Validation d'éligibilité, structuration du budget, rédaction de l'argumentaire et préparation du dossier.",
-  },
-  {
-    label: 'Variable',
-    title: 'Success fee',
-    body: 'Commission calculée uniquement sur les montants accordés et encaissés. Si rien n’est obtenu, cette part ne se déclenche pas.',
-  },
-]
-
 const pricingPlans = [
   {
     name: "Diagnostic d'éligibilité",
@@ -75,7 +62,7 @@ const pricingPlans = [
   {
     name: 'Montage stratégique',
     fixed: 'À partir de 1 200 €',
-    variable: '10 à 15% du montant encaissé',
+    variable: '12% du montant encaissé',
     detail: 'Pour les dossiers plus lourds : budget à reprendre, calendrier complexe, argumentaire à renforcer.',
   },
 ]
@@ -89,50 +76,28 @@ export default function OffersPricingSpotlight() {
         <FloatingPaths position={-1} />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(200,82,50,0.2),transparent_28%),linear-gradient(180deg,rgba(17,17,17,0.08),rgba(17,17,17,0.42))]" />
 
-        <div className="relative z-10 grid gap-0 xl:grid-cols-[minmax(0,1fr)_360px]">
-          <div className="border-r border-[rgba(243,241,234,0.14)] px-12 py-12">
+        <div className="relative z-10">
+          <div className="px-5 py-10 md:px-12 md:py-12">
             <div className="mb-9 flex flex-col gap-5">
               <span className="font-mono text-[0.75rem] tracking-[0.16em] uppercase text-accent">
-                Modèle hybride
+                Grille tarifaire
               </span>
               <h2
                 className="font-cond font-black uppercase leading-[0.9] tracking-[-0.03em] text-white"
                 style={{ fontSize: 'var(--fs-h2)' }}
               >
-                Fixe +
+                Grille
                 <br />
-                commission au succès.
+                tarifaire.
               </h2>
               <p className="max-w-[780px] font-body text-[1rem] leading-[1.85] text-[rgba(243,241,234,0.82)]">
-                Nous ne croyons pas aux facturations excessives sans résultat. Le modèle repose sur
-                un socle fixe pour couvrir le montage, puis une commission uniquement si la subvention
-                est accordée et encaissée.
+                Les tarifs varient selon le niveau de cadrage, la complexité du dossier, le montant visé
+                et le volume de reprise nécessaire.
               </p>
             </div>
 
-            <div className="grid gap-4 lg:grid-cols-2">
-              {pillars.map((pillar, index) => (
-                <motion.div
-                  key={pillar.title}
-                  className="min-h-[260px] border border-[rgba(243,241,234,0.14)] bg-[rgba(255,255,255,0.055)] px-7 py-7 backdrop-blur-xl"
-                  whileHover={{ y: -4, backgroundColor: 'rgba(255,255,255,0.075)' }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <p className="mb-5 font-mono text-[0.6875rem] tracking-[0.14em] uppercase text-accent">
-                    {index === 0 ? '01' : '02'} · {pillar.label}
-                  </p>
-                  <h3 className="mb-5 font-cond text-[1.55rem] font-black uppercase leading-[0.94] tracking-[-0.02em] text-white">
-                    {pillar.title}
-                  </h3>
-                  <p className="font-body text-[0.98rem] leading-[1.85] text-[rgba(243,241,234,0.78)]">
-                    {pillar.body}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="mt-8 overflow-hidden border border-[rgba(243,241,234,0.14)] bg-[rgba(255,255,255,0.05)] backdrop-blur-xl">
-              <div className="grid border-b border-[rgba(243,241,234,0.12)] bg-[rgba(255,255,255,0.05)] lg:grid-cols-[minmax(0,1fr)_190px_230px]">
+            <div className="overflow-hidden border border-[rgba(243,241,234,0.14)] bg-[rgba(255,255,255,0.05)] backdrop-blur-xl">
+              <div className="hidden border-b border-[rgba(243,241,234,0.12)] bg-[rgba(255,255,255,0.05)] lg:grid lg:grid-cols-[minmax(0,1fr)_190px_230px]">
                 {['Accompagnement', 'Socle fixe', 'Commission'].map((head) => (
                   <p
                     key={head}
@@ -158,11 +123,17 @@ export default function OffersPricingSpotlight() {
                     </p>
                   </div>
                   <div className="border-t border-[rgba(243,241,234,0.08)] px-6 py-5 lg:border-r lg:border-t-0 lg:border-[rgba(243,241,234,0.1)]">
+                    <p className="mb-1 font-mono text-[0.64rem] tracking-[0.14em] uppercase text-[rgba(243,241,234,0.48)] lg:hidden">
+                      Socle fixe
+                    </p>
                     <p className="font-cond text-[1.15rem] font-black uppercase leading-tight text-white">
                       {plan.fixed}
                     </p>
                   </div>
                   <div className="border-t border-[rgba(243,241,234,0.08)] px-6 py-5 lg:border-t-0">
+                    <p className="mb-1 font-mono text-[0.64rem] tracking-[0.14em] uppercase text-[rgba(243,241,234,0.48)] lg:hidden">
+                      Commission
+                    </p>
                     <p className="font-body text-[0.96rem] leading-[1.7] text-[rgba(243,241,234,0.82)]">
                       {plan.variable}
                     </p>
@@ -170,45 +141,16 @@ export default function OffersPricingSpotlight() {
                 </div>
               ))}
             </div>
-          </div>
 
-          <div className="flex flex-col justify-between gap-8 px-10 py-12">
-            <div className="space-y-6">
-              <div className="border border-[rgba(243,241,234,0.12)] bg-[rgba(255,255,255,0.04)] px-6 py-6 backdrop-blur-lg">
-                <p className="mb-3 font-mono text-[0.75rem] tracking-[0.14em] uppercase text-accent">
-                  Principe
-                </p>
-                <p className="font-body text-[1rem] leading-[1.85] text-[rgba(243,241,234,0.82)]">
-                  Un fixe couvre le travail réel de montage. La part variable ne se déclenche que sur
-                  une subvention accordée et encaissée.
-                </p>
-              </div>
-
-              <div className="border border-[rgba(243,241,234,0.12)] bg-[rgba(255,255,255,0.04)] px-6 py-6 backdrop-blur-lg">
-                <p className="mb-3 font-mono text-[0.6875rem] tracking-[0.14em] uppercase text-[rgba(243,241,234,0.6)]">
-                  Exemple de logique
-                </p>
-                <div className="space-y-4">
-                  <p className="font-cond text-[1.4rem] font-black uppercase leading-none text-white">
-                    Fixe + 10 à 15%
-                  </p>
-                  <p className="font-body text-[0.96rem] leading-[1.7] text-[rgba(243,241,234,0.8)]">
-                    Le pourcentage exact dépend du type de dossier, du montant visé, de l’urgence et du
-                    niveau de reprise nécessaire.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-4">
+            <div className="mt-8 flex flex-col gap-4 md:max-w-[360px]">
               <Link
                 href="/diagnostic"
                 className="inline-flex items-center justify-center rounded-full border border-[rgba(243,241,234,0.18)] bg-[linear-gradient(135deg,#c85232,#dc7551)] px-8 py-4 font-cond text-[0.75rem] font-bold uppercase tracking-[0.16em] text-white shadow-[0_22px_60px_rgba(200,82,50,0.22)] transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-[0_26px_70px_rgba(200,82,50,0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(243,241,234,0.55)]"
               >
-                Vérifier mon projet
+                Diagnostic gratuit
               </Link>
               <p className="font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-[rgba(243,241,234,0.52)]">
-                Aucun success fee sans subvention accordée et encaissée.
+                Commission uniquement sur subvention accordée et encaissée.
               </p>
             </div>
           </div>

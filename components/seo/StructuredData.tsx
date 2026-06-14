@@ -1,4 +1,3 @@
-import Script from 'next/script'
 import { faqItems } from '@/lib/faq'
 import { absoluteUrl, siteConfig } from '@/lib/seo'
 
@@ -9,7 +8,7 @@ type BreadcrumbItem = {
 
 export function StructuredData({ id, data }: { id: string; data: Record<string, unknown> }) {
   return (
-    <Script
+    <script
       id={id}
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}

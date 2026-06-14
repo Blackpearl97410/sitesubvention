@@ -56,7 +56,7 @@ export default function Ruler({ label = 'Session · 2025', playheadDelay = 0, pl
         {/* Gutter */}
         {hideLabel ? null : (
           <div
-            className="flex-shrink-0 border-r border-rule-dark flex items-center px-5"
+            className="hidden flex-shrink-0 items-center border-r border-rule-dark px-5 md:flex"
             style={{ width: 'var(--label-w)' }}
           >
             <span className="font-mono text-[0.5625rem] tracking-[0.14em] uppercase text-dim">{label}</span>

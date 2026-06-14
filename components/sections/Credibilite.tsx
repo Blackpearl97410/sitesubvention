@@ -52,7 +52,7 @@ export default function Credibilite() {
 
   return (
     <section style={{ borderBottom: '2px solid var(--black)' }}>
-      <Track name="Preuves" type="Chiffres réels" armed contentClassName="!p-0 !gap-0">
+      <Track name="Résultats" type="Références" armed hideLabel contentClassName="!p-0 !gap-0">
         <StaggerGroup className="contents" viewportMargin="-40px" stagger={0.07}>
           {creds.map((c, i) => (
             <StaggerItem
@@ -76,7 +76,7 @@ export default function Credibilite() {
         </StaggerGroup>
       </Track>
 
-      <Track name="Guichets" type="Aides travaillées" contentClassName="!px-8 !py-6 !gap-5 !flex-col !items-start">
+      <Track name="Guichets" type="Aides travaillées" hideLabel contentClassName="!px-8 !py-6 !gap-5 !flex-col !items-start">
         <Reveal trigger="view" variant="fadeOnly" className="w-full">
           <div className="flex w-full flex-col gap-4">
             <div className="flex items-center gap-3">

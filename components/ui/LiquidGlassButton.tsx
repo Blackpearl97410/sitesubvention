@@ -74,6 +74,7 @@ export function LiquidGlassButton({
       <span className={chromeClassName} />
       <span className={edgeClassName} />
       <span className={glowClassName} style={{ backdropFilter: 'blur(18px) saturate(140%)' }} />
+      <span className="pointer-events-none absolute inset-[2px] -translate-x-[120%] rounded-full opacity-0 transition-all duration-700 ease-out group-hover:translate-x-[120%] group-hover:opacity-100 bg-[linear-gradient(105deg,transparent_18%,rgba(255,255,255,0.16)_46%,transparent_74%)]" />
       <span className="pointer-events-none absolute inset-[1px] rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_25%_20%,rgba(255,255,255,0.18),transparent_32%),radial-gradient(circle_at_75%_78%,rgba(255,255,255,0.1),transparent_30%)]" />
       <span className={labelClassName}>{children}</span>
     </>

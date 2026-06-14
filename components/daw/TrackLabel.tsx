@@ -9,7 +9,7 @@ interface TrackLabelProps {
 export default function TrackLabel({ name, type, armed }: TrackLabelProps) {
   return (
     <div
-      className="flex flex-col justify-center gap-1 flex-shrink-0 border-r border-rule-dark px-5 py-3"
+      className="hidden flex-col justify-center gap-1 flex-shrink-0 border-r border-rule-dark px-5 py-3 md:flex"
       style={{ width: 'var(--label-w)', background: 'var(--track-bg)' }}
     >
       <span className="font-mono text-[0.625rem] font-bold tracking-[0.14em] uppercase text-soft">

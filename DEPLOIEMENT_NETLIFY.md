@@ -11,12 +11,38 @@ Ces valeurs sont aussi déclarées dans `netlify.toml`.
 
 ## Variables d'environnement à renseigner dans Netlify
 
-- `NEXT_PUBLIC_SITE_URL` : URL publique finale du site.
+- `NEXT_PUBLIC_SITE_URL` : `https://dossier-studio.fr`
 - `RESEND_API_KEY` : clé API Resend utilisée par le formulaire de contact.
-- `RESEND_FROM_EMAIL` : adresse expéditrice vérifiée dans Resend.
-- `CONTACT_TO_EMAIL` : adresse de réception des demandes.
-- `PUBLIC_CONTACT_EMAIL` : adresse affichée dans les messages d'erreur et utilisée comme réponse aux emails automatiques.
-- `RESEND_AUTO_REPLY` : `true` pour envoyer un accusé de réception automatique, `false` pour le désactiver.
+- `RESEND_FROM_EMAIL` : `Dossier Studio <contact@dossier-studio.fr>`
+- `CONTACT_TO_EMAIL` : `unisonore@gmail.com`
+- `PUBLIC_CONTACT_EMAIL` : `contact@dossier-studio.fr`
+- `RESEND_AUTO_REPLY` : `true`
+
+## DNS mail à créer dans Netlify
+
+Le domaine utilise les DNS Netlify. Pour conserver Netlify pour le site web tout en recevant les emails via LWS, ajouter ces enregistrements dans la zone DNS Netlify :
+
+| Type | Nom | Valeur | Priorité | TTL |
+|---|---|---|---|---|
+| A | `mail` | `213.255.195.67` | - | Auto |
+| MX | `@` | `mail.dossier-studio.fr` | `10` | Auto |
+| TXT | `_dmarc` | `v=DMARC1; p=none;` | - | Auto |
+
+Ne pas supprimer les enregistrements web Netlify existants pour `dossier-studio.fr` et `www`.
+
+Après propagation, vérifier :
+
+```bash
+dig MX dossier-studio.fr
+dig A mail.dossier-studio.fr
+dig TXT _dmarc.dossier-studio.fr
+```
+
+Résultat attendu :
+
+- `MX dossier-studio.fr` retourne `10 mail.dossier-studio.fr.`
+- `A mail.dossier-studio.fr` retourne `213.255.195.67`
+- `_dmarc.dossier-studio.fr` retourne `v=DMARC1; p=none;`
 
 ## Note Next.js
 

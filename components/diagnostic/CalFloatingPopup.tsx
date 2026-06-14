@@ -32,6 +32,10 @@ export function openDiagnosticCal() {
 
 export default function CalFloatingPopup() {
   useEffect(() => {
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      document.querySelectorAll('cal-floating-button').forEach((node) => node.remove())
+      return
+    }
     if (window.__dossierStudioCalFloatingReady) return
 
     ;((C: Window, A: string, L: string) => {

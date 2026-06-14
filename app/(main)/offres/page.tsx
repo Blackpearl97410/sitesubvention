@@ -68,8 +68,8 @@ export default function OffresPage() {
       <BreadcrumbJsonLd items={[{ name: 'Offres', path: '/offres' }]} />
       <Ruler label="Offres" playheadDuration={18} />
 
-      <Track name="Offres" type="Modèle d'accompagnement" armed contentClassName="!py-16 !px-12 !items-start">
-        <div className="relative grid w-full gap-10 overflow-hidden lg:grid-cols-[minmax(0,1fr)_320px]">
+      <Track name="Offres" type="Modèle d'accompagnement" armed contentClassName="!items-start !px-5 !py-12 md:!px-12 md:!py-16">
+        <div className="relative grid w-full gap-10 overflow-hidden">
           <BackgroundGradientAnimation
             interactive={false}
             size="70%"
@@ -95,26 +95,11 @@ export default function OffresPage() {
               <br />
               et aligné.
             </h1>
-            <p className="font-body text-[1.05rem] leading-[1.9] text-soft max-w-[760px]">
+            <p className="font-body text-[1rem] leading-[1.85] text-soft max-w-[760px] md:text-[1.05rem]">
               L&apos;accompagnement repose sur un modèle hybride : un fixe pour couvrir le travail
               d&apos;ingénierie du dossier, puis une commission uniquement si la subvention est accordée
               et encaissée.
             </p>
-          </div>
-          <div className="relative z-10 border-l border-rule-dark pl-8 pt-1">
-            <p className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-dim mb-3">Repères</p>
-            <div className="space-y-4">
-              {[
-                '13 dossiers lancés depuis janvier 2026',
-                '4 artistes et labels accompagnés',
-                '70% de taux de réussite',
-                'France & La Réunion',
-              ].map((item) => (
-                <p key={item} className="font-body text-[0.95rem] leading-[1.75] text-soft">
-                  {item}
-                </p>
-              ))}
-            </div>
           </div>
         </div>
       </Track>
@@ -125,20 +110,11 @@ export default function OffresPage() {
         <Track
           key={offer.id}
           name={`Offre ${offer.id}`}
-          type={offer.title}
           armed={offer.id === '02'}
           contentClassName="!px-0 !py-0 !gap-0 !items-stretch"
         >
-          <div className="grid w-full lg:grid-cols-[90px_minmax(0,1fr)_320px]">
-            <div className="border-r border-rule px-10 py-10">
-              <span
-                className="font-cond font-black leading-none tracking-[-0.04em] text-rule-dark"
-                style={{ fontSize: 'var(--fs-h3)' }}
-              >
-                {offer.id}
-              </span>
-            </div>
-            <div className="px-10 py-10">
+          <div className="grid w-full lg:grid-cols-[minmax(0,1fr)_320px]">
+            <div className="px-5 py-8 md:px-10 md:py-10">
               <p className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-accent mb-4">
                 {offer.profile}
               </p>
@@ -162,7 +138,7 @@ export default function OffresPage() {
                 ))}
               </div>
             </div>
-            <div className="border-l border-rule px-10 py-10" style={{ background: 'var(--surface-2)' }}>
+            <div className="border-t border-rule px-5 py-8 md:border-l md:border-t-0 md:px-10 md:py-10" style={{ background: 'var(--surface-2)' }}>
               <p className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-dim mb-3">
                 Pour qui
               </p>
@@ -180,7 +156,7 @@ export default function OffresPage() {
         </Track>
       ))}
 
-      <Track name="Diagnostic" type="Choisir la bonne formule" contentClassName="!py-8 !px-12 !gap-6">
+      <Track name="Diagnostic" type="Choisir la bonne formule" contentClassName="!flex-col !items-stretch !gap-5 !px-5 !py-8 md:!flex-row md:!items-center md:!gap-6 md:!px-12">
         <div className="flex-1">
           <p className="font-cond font-bold uppercase tracking-[0.08em] text-black text-[0.95rem] mb-2">
             Tu hésites entre plusieurs situations ?
