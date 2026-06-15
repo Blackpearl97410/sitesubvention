@@ -33,24 +33,60 @@ type ActivityRow = {
   created_at: string
 }
 
+const rateLimitWindowMs = 60_000
+const maxAttemptsPerWindow = 12
+const attempts = new Map<string, { count: number; resetAt: number }>()
+
 function readAccessToken(request: NextRequest) {
   return request.headers.get('x-client-access-token') || request.nextUrl.searchParams.get('token') || ''
 }
 
+function getClientKey(request: NextRequest) {
+  return (
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    request.headers.get('x-real-ip') ||
+    'local'
+  )
+}
+
+function isRateLimited(key: string) {
+  const now = Date.now()
+  const current = attempts.get(key)
+
+  if (!current || current.resetAt <= now) {
+    attempts.set(key, { count: 1, resetAt: now + rateLimitWindowMs })
+    return false
+  }
+
+  current.count += 1
+  return current.count > maxAttemptsPerWindow
+}
+
+const noStoreHeaders = { 'Cache-Control': 'no-store' }
+
 export async function GET(request: NextRequest) {
+  const clientKey = getClientKey(request)
+
+  if (isRateLimited(clientKey)) {
+    return NextResponse.json(
+      { error: 'Trop de tentatives. Réessaie dans une minute.' },
+      { status: 429, headers: noStoreHeaders }
+    )
+  }
+
   const token = readAccessToken(request)
 
   if (!token.trim()) {
     return NextResponse.json(
       { error: 'Token d’accès manquant.' },
-      { status: 401, headers: { 'Cache-Control': 'no-store' } }
+      { status: 401, headers: noStoreHeaders }
     )
   }
 
   if (!hasTursoConfig()) {
     return NextResponse.json(
-      { error: 'Base Turso non configurée sur cet environnement.' },
-      { status: 503, headers: { 'Cache-Control': 'no-store' } }
+      { error: "L'espace client n'est pas encore disponible sur cet environnement." },
+      { status: 503, headers: noStoreHeaders }
     )
   }
 
@@ -60,8 +96,8 @@ export async function GET(request: NextRequest) {
     tokenHash = hashClientAccessToken(token)
   } catch {
     return NextResponse.json(
-      { error: 'Configuration d’accès incomplète.' },
-      { status: 500, headers: { 'Cache-Control': 'no-store' } }
+      { error: "L'espace client n'est pas encore disponible sur cet environnement." },
+      { status: 500, headers: noStoreHeaders }
     )
   }
 
@@ -96,7 +132,7 @@ export async function GET(request: NextRequest) {
     if (!dossier) {
       return NextResponse.json(
         { error: 'Accès invalide ou expiré.' },
-        { status: 403, headers: { 'Cache-Control': 'no-store' } }
+        { status: 403, headers: noStoreHeaders }
       )
     }
 
@@ -120,6 +156,14 @@ export async function GET(request: NextRequest) {
         `,
         args: [dossier.id],
       }),
+      db.execute({
+        sql: `
+          update client_access_tokens
+          set last_used_at = datetime('now')
+          where token_hash = ?
+        `,
+        args: [tokenHash],
+      }),
     ])
 
     return NextResponse.json(
@@ -128,14 +172,14 @@ export async function GET(request: NextRequest) {
         documents: documentsResult.rows as unknown as DocumentRow[],
         activity: activityResult.rows as unknown as ActivityRow[],
       },
-      { headers: { 'Cache-Control': 'no-store' } }
+      { headers: noStoreHeaders }
     )
   } catch (error) {
     console.error('Turso espace client error', error)
 
     return NextResponse.json(
       { error: 'Service temporairement indisponible.' },
-      { status: 502, headers: { 'Cache-Control': 'no-store' } }
+      { status: 502, headers: noStoreHeaders }
     )
   }
 }
