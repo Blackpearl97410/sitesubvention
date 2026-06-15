@@ -142,7 +142,7 @@ export default function AidesOuvertes() {
         </div>
       </Track>
 
-      {(payload ? filteredItems : Array.from({ length: 3 })).slice(0, 6).map((item, index) => {
+      {(payload ? filteredItems : Array.from({ length: 3 })).slice(0, 12).map((item, index) => {
         const aid = item as AideOuverte | undefined
         return (
           <Track

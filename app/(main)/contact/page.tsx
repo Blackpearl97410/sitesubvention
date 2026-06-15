@@ -77,7 +77,7 @@ export default function Page() {
           <div className="relative overflow-hidden border-l border-rule-dark pl-8 pt-1">
             <ContactAtmosphere compact className="opacity-50" />
             <div className="relative z-10">
-            <p className="font-mono text-[0.4rem] tracking-[0.16em] uppercase text-dim mb-3">Repères</p>
+            <p className="font-mono text-[0.4rem] tracking-[0.16em] uppercase text-dim mb-3">Informations utiles</p>
             <div className="space-y-3">
               {[
                 'Réponse sous 48h ouvrées',

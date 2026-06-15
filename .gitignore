@@ -6,3 +6,7 @@ out/
 *.log
 .DS_Store
 *.tsbuildinfo
+
+# SQLite runtime journals
+*.sqlite-shm
+*.sqlite-wal

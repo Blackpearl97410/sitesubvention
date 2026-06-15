@@ -7,22 +7,22 @@ import RollingText from '@/components/motion/RollingText'
 const signals = [
   {
     value: 'Diagnostic gratuit',
-    label: 'Premier tri du potentiel',
+    label: 'Premier tri du potentiel et des échéances',
   },
   {
     value: 'À partir de 390 €',
     label: 'Montage dossier standard',
   },
   {
-    value: 'Success fee',
-    label: 'Uniquement si aide encaissée',
+    value: '10% standard',
+    label: 'Commission uniquement si aide encaissée',
   },
 ]
 
 export default function PricingSignal() {
   return (
     <section style={{ borderBottom: '2px solid var(--black)' }}>
-      <Track name="Budget" type="Repères de prix" armed contentClassName="!p-0 !gap-0">
+      <Track name="Budget" type="Tarifs clés" armed contentClassName="!p-0 !gap-0">
         <div className="grid w-full lg:grid-cols-[repeat(3,minmax(0,1fr))_220px]">
           {signals.map((signal, index) => (
             <div
@@ -41,11 +41,10 @@ export default function PricingSignal() {
             href="/offres"
             className="flex items-center justify-center border-l border-rule bg-[var(--surface-2)] px-6 py-6 font-cond text-[0.625rem] font-bold uppercase tracking-[0.16em] text-accent transition-colors hover:bg-[rgba(200,82,50,0.08)]"
           >
-            <RollingText text="Voir le modèle →" animateOnHover={false} />
+            <RollingText text="Voir les tarifs →" animateOnHover={false} />
           </Link>
         </div>
       </Track>
     </section>
   )
 }
-

@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import CalFloatingPopup, { openDiagnosticCal } from '@/components/diagnostic/CalFloatingPopup'
-import { trackEvent } from '@/lib/analytics'
 import { motionTiming } from '@/lib/tokens'
 import Ruler from '@/components/daw/Ruler'
 
@@ -17,6 +16,7 @@ type Answers = {
   email: string
   phone: string
   description: string
+  website: string
 }
 
 const STEPS = ['Statut', 'Projet', 'Budget', 'Contact']
@@ -55,7 +55,7 @@ const slideIn = {
 export default function DiagnosticFunnel() {
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState<Answers>({
-    statut: '', projet: '', budget: '', prenom: '', email: '', phone: '', description: '',
+    statut: '', projet: '', budget: '', prenom: '', email: '', phone: '', description: '', website: '',
   })
   const [submitted, setSubmitted] = useState(false)
   const [sending, setSending] = useState(false)
@@ -85,6 +85,7 @@ export default function DiagnosticFunnel() {
           projectType: answers.projet,
           budget: answers.budget,
           message: answers.description,
+          website: answers.website,
         }),
       })
 
@@ -94,12 +95,6 @@ export default function DiagnosticFunnel() {
       }
 
       setSubmitted(true)
-      trackEvent('diagnostic_submit', {
-        form_name: 'diagnostic',
-        status: answers.statut,
-        project_type: answers.projet,
-        budget: answers.budget,
-      })
     } catch (error) {
       setSubmitError(
         error instanceof Error
@@ -118,6 +113,7 @@ export default function DiagnosticFunnel() {
     >
       <CalFloatingPopup />
       <Ruler label="Diagnostic · 2026" playheadDuration={20} />
+      <h1 className="sr-only">Diagnostic gratuit pour aides et subventions musique</h1>
 
       {/* Progress */}
       <div
@@ -285,10 +281,21 @@ export default function DiagnosticFunnel() {
                     </div>
                   )}
 
-                  {/* Step 3 — Contact */}
-                  {step === 3 && (
-                    <form onSubmit={handleSubmit}>
-                      <p className="font-mono text-[0.5625rem] tracking-[0.18em] uppercase mb-6" style={{ color: 'var(--accent)' }}>
+	                  {/* Step 3 — Contact */}
+	                  {step === 3 && (
+	                    <form onSubmit={handleSubmit}>
+	                      <div className="hidden" aria-hidden="true">
+	                        <label>
+	                          Site web
+	                          <input
+	                            tabIndex={-1}
+	                            autoComplete="off"
+	                            value={answers.website}
+	                            onChange={e => setAnswers(a => ({ ...a, website: e.target.value }))}
+	                          />
+	                        </label>
+	                      </div>
+	                      <p className="font-mono text-[0.5625rem] tracking-[0.18em] uppercase mb-6" style={{ color: 'var(--accent)' }}>
                         Question 04 · Contact
                       </p>
                       <h2
@@ -303,10 +310,13 @@ export default function DiagnosticFunnel() {
                             <label className="font-mono text-[0.5625rem] tracking-[0.14em] uppercase" style={{ color: 'var(--dim)' }}>
                               Prénom *
                             </label>
-                            <input
-                              type="text"
-                              required
-                              value={answers.prenom}
+	                            <input
+	                              type="text"
+	                              required
+	                              name="firstName"
+	                              autoComplete="given-name"
+	                              maxLength={80}
+	                              value={answers.prenom}
                               onChange={e => setAnswers(a => ({ ...a, prenom: e.target.value }))}
                               placeholder="Ton prénom"
                               className="px-5 py-3 rounded-lg border font-body text-[0.95rem] outline-none transition-all"
@@ -321,10 +331,13 @@ export default function DiagnosticFunnel() {
                             <label className="font-mono text-[0.5625rem] tracking-[0.14em] uppercase" style={{ color: 'var(--dim)' }}>
                               Email *
                             </label>
-                            <input
-                              type="email"
-                              required
-                              value={answers.email}
+	                            <input
+	                              type="email"
+	                              required
+	                              name="email"
+	                              autoComplete="email"
+	                              maxLength={254}
+	                              value={answers.email}
                               onChange={e => setAnswers(a => ({ ...a, email: e.target.value }))}
                               placeholder="ton@email.com"
                               className="px-5 py-3 rounded-lg border font-body text-[0.95rem] outline-none transition-all"
@@ -340,9 +353,12 @@ export default function DiagnosticFunnel() {
                           <label className="font-mono text-[0.5625rem] tracking-[0.14em] uppercase" style={{ color: 'var(--dim)' }}>
                             WhatsApp / téléphone facultatif
                           </label>
-                          <input
-                            type="tel"
-                            value={answers.phone}
+	                          <input
+	                            type="tel"
+	                            name="phone"
+	                            autoComplete="tel"
+	                            maxLength={40}
+	                            value={answers.phone}
                             onChange={e => setAnswers(a => ({ ...a, phone: e.target.value }))}
                             placeholder="+262..., +33..., WhatsApp..."
                             className="px-5 py-3 rounded-lg border font-body text-[0.95rem] outline-none transition-all"
@@ -357,8 +373,10 @@ export default function DiagnosticFunnel() {
                           <label className="font-mono text-[0.5625rem] tracking-[0.14em] uppercase" style={{ color: 'var(--dim)' }}>
                             Description du projet facultative
                           </label>
-                          <textarea
-                            value={answers.description}
+	                          <textarea
+	                            name="message"
+	                            maxLength={3000}
+	                            value={answers.description}
                             onChange={e => setAnswers(a => ({ ...a, description: e.target.value }))}
                             placeholder="Quelques lignes sur ton projet, le dispositif envisagé, les délais ou le blocage actuel..."
                             rows={4}
@@ -382,10 +400,10 @@ export default function DiagnosticFunnel() {
                         >
                           {sending ? 'Envoi…' : 'Obtenir mon diagnostic →'}
                         </button>
-                        {submitError ? (
-                          <p className="font-body text-[0.9rem] leading-[1.6]" style={{ color: 'var(--accent)' }}>
-                            {submitError}
-                          </p>
+	                        {submitError ? (
+	                          <p role="alert" className="font-body text-[0.9rem] leading-[1.6]" style={{ color: 'var(--accent)' }}>
+	                            {submitError}
+	                          </p>
                         ) : null}
                         <p className="font-body text-[0.78rem] leading-[1.7]" style={{ color: 'var(--dim)' }}>
                           Les informations envoyées servent uniquement à préparer ton retour de diagnostic.

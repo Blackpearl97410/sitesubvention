@@ -13,7 +13,6 @@ const steps = [
     label:    'Diagnostic',
     title:    "On identifie les aides activables.",
     body:     "On part de ton projet, de ta structure, de ton calendrier et de tes pièces disponibles. L'objectif : distinguer les dispositifs crédibles des fausses pistes, puis choisir le bon angle de dossier.",
-    duration: '20 min à 1 session',
     armed:    true,
   },
   {
@@ -23,7 +22,6 @@ const steps = [
     label:    'Montage',
     title:    "Je transforme ton projet en dossier finançable.",
     body:     "Je structure l'argumentaire, clarifie les objectifs, rends le budget cohérent et adapte le langage au guichet ciblé. Tu fournis les éléments factuels et tu valides les orientations clés.",
-    duration: '1 à 3 semaines par dossier',
     armed:    false,
   },
   {
@@ -33,7 +31,6 @@ const steps = [
     label:    'Suivi',
     title:    "On sécurise le dépôt et la suite.",
     body:     "Je prépare les éléments de dépôt, contrôle les pièces, traite les demandes complémentaires et analyse la réponse. Si le dossier est accepté, on anticipe les obligations et les prochains guichets.",
-    duration: 'Jusqu’à la réponse',
     armed:    false,
   },
 ]
@@ -74,10 +71,6 @@ export default function Methode() {
                 {s.title}
               </h3>
               <p className="font-body font-light text-soft text-[0.98rem] leading-[1.9] max-w-xl">{s.body}</p>
-            </div>
-            <div className="flex-shrink-0 flex flex-col items-end gap-2 pt-1 rounded-[18px] border border-rule px-5 py-4" style={{ background: 'var(--surface-2)' }}>
-              <span className="font-mono text-[0.375rem] tracking-[0.16em] uppercase text-dim">Durée indicative</span>
-              <span className="font-mono text-[0.4375rem] tracking-[0.12em] uppercase text-soft">{s.duration}</span>
             </div>
           </Track>
         </Reveal>

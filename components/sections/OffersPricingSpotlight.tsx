@@ -62,7 +62,7 @@ const pricingPlans = [
   {
     name: 'Montage stratégique',
     fixed: 'À partir de 1 200 €',
-    variable: '10 à 15% du montant encaissé',
+    variable: '12% du montant encaissé',
     detail: 'Pour les dossiers plus lourds : budget à reprendre, calendrier complexe, argumentaire à renforcer.',
   },
 ]
@@ -76,8 +76,8 @@ export default function OffersPricingSpotlight() {
         <FloatingPaths position={-1} />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(200,82,50,0.2),transparent_28%),linear-gradient(180deg,rgba(17,17,17,0.08),rgba(17,17,17,0.42))]" />
 
-        <div className="relative z-10 grid gap-0 xl:grid-cols-[minmax(0,1fr)_360px]">
-          <div className="border-r border-[rgba(243,241,234,0.14)] px-5 py-10 md:px-12 md:py-12">
+        <div className="relative z-10">
+          <div className="px-5 py-10 md:px-12 md:py-12">
             <div className="mb-9 flex flex-col gap-5">
               <span className="font-mono text-[0.75rem] tracking-[0.16em] uppercase text-accent">
                 Grille tarifaire
@@ -141,42 +141,13 @@ export default function OffersPricingSpotlight() {
                 </div>
               ))}
             </div>
-          </div>
 
-          <div className="flex flex-col justify-between gap-8 px-5 py-10 md:px-10 md:py-12">
-            <div className="space-y-6">
-              <div className="border border-[rgba(243,241,234,0.12)] bg-[rgba(255,255,255,0.04)] px-6 py-6 backdrop-blur-lg">
-                <p className="mb-3 font-mono text-[0.75rem] tracking-[0.14em] uppercase text-accent">
-                  Principe
-                </p>
-                <p className="font-body text-[1rem] leading-[1.85] text-[rgba(243,241,234,0.82)]">
-                  Un fixe couvre le travail réel de montage. La part variable ne se déclenche que sur
-                  une subvention accordée et encaissée.
-                </p>
-              </div>
-
-              <div className="border border-[rgba(243,241,234,0.12)] bg-[rgba(255,255,255,0.04)] px-6 py-6 backdrop-blur-lg">
-                <p className="mb-3 font-mono text-[0.6875rem] tracking-[0.14em] uppercase text-[rgba(243,241,234,0.6)]">
-                  Exemple de logique
-                </p>
-                <div className="space-y-4">
-                  <p className="font-cond text-[1.4rem] font-black uppercase leading-none text-white">
-                    Fixe + 10 à 15%
-                  </p>
-                  <p className="font-body text-[0.96rem] leading-[1.7] text-[rgba(243,241,234,0.8)]">
-                    Le pourcentage exact dépend du type de dossier, du montant visé, de l’urgence et du
-                    niveau de reprise nécessaire.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-4">
+            <div className="mt-8 flex flex-col gap-4 md:max-w-[360px]">
               <Link
                 href="/diagnostic"
                 className="inline-flex items-center justify-center rounded-full border border-[rgba(243,241,234,0.18)] bg-[linear-gradient(135deg,#c85232,#dc7551)] px-8 py-4 font-cond text-[0.75rem] font-bold uppercase tracking-[0.16em] text-white shadow-[0_22px_60px_rgba(200,82,50,0.22)] transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-[0_26px_70px_rgba(200,82,50,0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(243,241,234,0.55)]"
               >
-                Vérifier mon projet
+                Diagnostic gratuit
               </Link>
               <p className="font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-[rgba(243,241,234,0.52)]">
                 Commission uniquement sur subvention accordée et encaissée.
