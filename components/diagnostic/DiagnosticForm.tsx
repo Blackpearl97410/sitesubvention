@@ -11,7 +11,6 @@ type Answers = {
   firstName: string
   email: string
   phone: string
-  website: string
 }
 
 const initialAnswers: Answers = {
@@ -21,7 +20,6 @@ const initialAnswers: Answers = {
   firstName: '',
   email: '',
   phone: '',
-  website: '',
 }
 
 const questions = [
@@ -98,7 +96,6 @@ export default function DiagnosticForm() {
           status: answers.status,
           projectType: answers.projectType,
           budget: answers.budget,
-          website: answers.website,
         }),
       })
 
@@ -167,17 +164,6 @@ export default function DiagnosticForm() {
 
   return (
     <form onSubmit={handleSubmit} className="overflow-hidden border border-rule-dark bg-[var(--surface)]">
-      <div className="hidden" aria-hidden="true">
-        <label>
-          Site web
-          <input
-            tabIndex={-1}
-            autoComplete="off"
-            value={answers.website}
-            onChange={(event) => setAnswers((current) => ({ ...current, website: event.target.value }))}
-          />
-        </label>
-      </div>
       <div className="grid border-b border-rule lg:grid-cols-[minmax(0,1fr)_250px]">
         <div className="px-6 py-6">
           <p className="mb-3 font-mono text-[0.75rem] tracking-[0.16em] uppercase text-accent">
@@ -276,9 +262,6 @@ export default function DiagnosticForm() {
                   <label className="flex flex-col gap-2">
                     <span className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-dim">Prénom</span>
                     <input
-                      name="firstName"
-                      autoComplete="given-name"
-                      maxLength={80}
                       value={answers.firstName}
                       onChange={(event) => setAnswers((current) => ({ ...current, firstName: event.target.value }))}
                       placeholder="Ton prénom"
@@ -288,10 +271,7 @@ export default function DiagnosticForm() {
                   <label className="flex flex-col gap-2">
                     <span className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-dim">Email</span>
                     <input
-                      name="email"
                       type="email"
-                      autoComplete="email"
-                      maxLength={254}
                       value={answers.email}
                       onChange={(event) => setAnswers((current) => ({ ...current, email: event.target.value }))}
                       placeholder="ton@email.com"
@@ -303,10 +283,6 @@ export default function DiagnosticForm() {
                       WhatsApp / téléphone facultatif
                     </span>
                     <input
-                      name="phone"
-                      type="tel"
-                      autoComplete="tel"
-                      maxLength={40}
                       value={answers.phone}
                       onChange={(event) => setAnswers((current) => ({ ...current, phone: event.target.value }))}
                       placeholder="+262..., +33..., WhatsApp..."
@@ -381,12 +357,12 @@ export default function DiagnosticForm() {
             </p>
           )}
           {attempted && !isComplete ? (
-            <p role="alert" className="font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-accent">
+            <p className="font-mono text-[0.6875rem] tracking-[0.12em] uppercase text-accent">
               Merci de compléter le prénom et l&apos;email.
             </p>
           ) : null}
           {submitError ? (
-            <p role="alert" className="font-body text-[0.93rem] leading-[1.6] text-accent">{submitError}</p>
+            <p className="font-body text-[0.93rem] leading-[1.6] text-accent">{submitError}</p>
           ) : null}
         </div>
       </div>

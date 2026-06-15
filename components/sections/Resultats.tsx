@@ -69,7 +69,7 @@ export default function Resultats() {
     <section style={{ borderBottom: '2px solid var(--black)' }}>
       <Ruler label="Résultats" playheadDuration={24} playheadDelay={-10} />
 
-      <Track name="Résultats" type="Cas anonymisés" armed hideLabel contentClassName="!py-12 !px-12 !items-start">
+      <Track name="Résultats" type="Cas anonymisés" armed contentClassName="!py-12 !px-12 !items-start">
         <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
           <div className="flex flex-col gap-5">
             <span className="font-mono text-[0.4375rem] tracking-[0.18em] uppercase text-accent">Cas clients anonymisés</span>
@@ -93,7 +93,6 @@ export default function Resultats() {
             name={`Cas ${c.id}`}
             type={c.type}
             armed={c.armed}
-            hideLabel
             contentClassName="!flex-col !items-start !gap-0 !p-0"
             className="group transition-transform duration-300 hover:-translate-y-0.5"
           >
@@ -138,7 +137,7 @@ export default function Resultats() {
         </Reveal>
       ))}
 
-      <Track name="Autres cas" type="En cours" hideLabel contentClassName="!py-6 !px-12 !gap-6">
+      <Track name="Autres cas" type="En cours" contentClassName="!py-6 !px-12 !gap-6">
         <div className="flex-1">
           <p className="font-body text-soft text-sm">D'autres cas sont en cours de documentation et d'anonymisation.</p>
         </div>

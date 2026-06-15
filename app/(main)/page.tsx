@@ -1,6 +1,5 @@
 import Hero from '@/components/sections/Hero'
-import PricingSignal from '@/components/sections/PricingSignal'
-import AidPotentialSimulator from '@/components/sections/AidPotentialSimulator'
+import AidesOuvertesCTA from '@/components/sections/AidesOuvertesCTA'
 import Pain from '@/components/sections/Pain'
 import Credibilite from '@/components/sections/Credibilite'
 import Resultats from '@/components/sections/Resultats'
@@ -15,8 +14,7 @@ export default function Home() {
       <BreadcrumbJsonLd items={[{ name: 'Accueil', path: '/' }]} />
       <FAQJsonLd />
       <Hero />
-      <PricingSignal />
-      <AidPotentialSimulator />
+      <AidesOuvertesCTA />
       <Pain />
       <Credibilite />
       <Resultats />

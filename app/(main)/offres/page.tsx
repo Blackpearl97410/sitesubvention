@@ -69,7 +69,7 @@ export default function OffresPage() {
       <Ruler label="Offres" playheadDuration={18} />
 
       <Track name="Offres" type="Modèle d'accompagnement" armed contentClassName="!items-start !px-5 !py-12 md:!px-12 md:!py-16">
-        <div className="relative grid w-full gap-10 overflow-hidden">
+        <div className="relative grid w-full gap-10 overflow-hidden lg:grid-cols-[minmax(0,1fr)_320px]">
           <BackgroundGradientAnimation
             interactive={false}
             size="70%"
@@ -100,6 +100,21 @@ export default function OffresPage() {
               d&apos;ingénierie du dossier, puis une commission uniquement si la subvention est accordée
               et encaissée.
             </p>
+          </div>
+          <div className="relative z-10 border-t border-rule-dark pt-6 md:border-l md:border-t-0 md:pl-8 md:pt-1">
+            <p className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-dim mb-3">Repères</p>
+            <div className="space-y-4">
+              {[
+                '13 dossiers lancés depuis janvier 2026',
+                '4 artistes et labels accompagnés',
+                '70% de taux de réussite',
+                'France & La Réunion',
+              ].map((item) => (
+                <p key={item} className="font-body text-[0.95rem] leading-[1.75] text-soft">
+                  {item}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
       </Track>

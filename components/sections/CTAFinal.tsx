@@ -51,7 +51,7 @@ export default function CTAFinal() {
                 className="font-cond font-bold text-[0.6875rem] tracking-[0.16em] uppercase text-white px-9 py-4 transition-colors inline-flex"
                 style={{ background: 'linear-gradient(135deg, var(--accent), #d86a47)', boxShadow: '0 16px 34px rgba(200,82,50,0.18)' }}
               >
-                <RollingText text="Diagnostic gratuit →" animateOnHover={false} />
+                <RollingText text="Démarrer le diagnostic →" animateOnHover={false} />
               </Link>
             </motion.div>
           </Magnetic>

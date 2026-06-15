@@ -20,7 +20,7 @@ export default function Page() {
       <Ruler label="À propos" playheadDuration={18} />
 
       <Track name="À propos" type="Positionnement" armed contentClassName="!py-16 !px-12 !items-start">
-        <div className="grid w-full gap-10">
+        <div className="grid w-full gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
           <div className="flex flex-col gap-6">
             <span className="font-mono text-[0.4375rem] tracking-[0.18em] uppercase text-accent">
               Dossier Studio
@@ -38,6 +38,21 @@ export default function Page() {
               projets, parfois de vraies opportunités de financement, mais plus le temps de traduire
               cela en dossiers clairs, cohérents et finançables.
             </p>
+          </div>
+          <div className="border-l border-rule-dark pl-8 pt-1">
+            <p className="font-mono text-[0.4rem] tracking-[0.16em] uppercase text-dim mb-3">Repères</p>
+            <div className="space-y-3">
+              {[
+                'Alexandre Paviel',
+                'France & La Réunion',
+                'Secteur musical francophone',
+                '13 dossiers lancés depuis janvier 2026',
+              ].map((item) => (
+                <p key={item} className="font-body text-[0.95rem] leading-[1.8] text-soft">
+                  {item}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
       </Track>

@@ -62,8 +62,8 @@ export default function OffresApercu() {
           <div className="border-l border-rule-dark pl-8 pt-1">
             <p className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-dim mb-3">Orientation</p>
             <p className="font-body text-soft text-[0.95rem] leading-[1.82]">
-              Chaque projet n’appelle pas le même niveau d’accompagnement. Les premiers repères :
-              diagnostic gratuit, montage dès 390 €, puis commission standard de 10% si l’aide est encaissée.
+              Chaque projet n’appelle pas le même niveau d’accompagnement. La page offres détaille
+              ensuite les tarifs, les prestations incluses et les options sur devis.
             </p>
           </div>
         </div>
@@ -127,6 +127,9 @@ export default function OffresApercu() {
           <LiquidGlassButton href="/diagnostic" warm size="lg" className="flex-shrink-0" contentClassName="text-white">
             <RollingText text="Diagnostic gratuit →" animateOnHover={false} />
           </LiquidGlassButton>
+          <Link href="/offres" className="font-cond font-semibold text-[0.5625rem] tracking-[0.16em] uppercase text-soft border border-rule-dark px-5 py-4 hover:border-accent hover:text-accent transition-colors flex-shrink-0" style={{ background: 'var(--surface-2)' }}>
+            <RollingText text="Voir les offres" animateOnHover={false} />
+          </Link>
         </div>
       </Track>
     </section>

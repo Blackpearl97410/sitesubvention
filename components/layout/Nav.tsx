@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Magnetic from '@/components/motion/Magnetic'
 import { LiquidGlassButton } from '@/components/ui/LiquidGlassButton'
 import { motionTiming } from '@/lib/tokens'
 
@@ -88,23 +89,27 @@ export default function Nav() {
         ))}
       </ul>
 
-      {/* Espace client */}
-      <motion.div
-        className="flex flex-shrink-0 items-center"
-        whileHover={{ y: -1 }}
-        whileTap={{ scale: 0.99 }}
-        transition={{ duration: 0.22, ease: motionTiming.ease }}
-      >
-        <LiquidGlassButton
-          href="/espace-client"
-          active={pathname === '/espace-client'}
-          size="sm"
-          className="mr-2 px-3 md:mr-3 md:px-4"
-          contentClassName="text-white/88"
+      {/* CTA */}
+      <Magnetic strength={10}>
+        <motion.div
+          className="hidden md:block"
+          whileHover={{ y: -1.5, scale: 1.01 }}
+          whileTap={{ scale: 0.99 }}
+          transition={{ duration: 0.24, ease: motionTiming.ease }}
         >
-          <span className="whitespace-nowrap leading-none">Espace client</span>
-        </LiquidGlassButton>
-      </motion.div>
+          <LiquidGlassButton
+            href="/diagnostic"
+            warm
+            size="lg"
+            className="mr-4"
+            contentClassName="text-white"
+          >
+            <span className="font-cond font-bold text-[0.6875rem] tracking-[0.14em] uppercase text-white whitespace-nowrap">
+              <span className="leading-none">Diagnostic gratuit</span>
+            </span>
+          </LiquidGlassButton>
+        </motion.div>
+      </Magnetic>
     </nav>
     {pathname !== '/diagnostic' ? (
       <Link

@@ -1,34 +1,22 @@
 import { NextResponse } from 'next/server'
-import { z } from 'zod'
-import { checkRateLimit, getClientIp } from '@/lib/rate-limit'
+
+type ContactPayload = {
+  source?: string
+  firstName?: string
+  email?: string
+  phone?: string
+  subject?: string
+  message?: string
+  status?: string
+  projectType?: string
+  budget?: string
+  website?: string
+}
 
 const RESEND_ENDPOINT = 'https://api.resend.com/emails'
 const defaultRecipient = 'unisonore@gmail.com'
 const fallbackContactEmail = 'contact@dossier-studio.fr'
-const defaultFromEmail = 'Dossier Studio <contact@dossier-studio.fr>'
-const maxPayloadBytes = 12_000
-const contactRateLimit = {
-  limit: 5,
-  windowMs: 10 * 60 * 1000,
-}
-
-const contactPayloadSchema = z.object({
-  source: z.enum(['contact', 'diagnostic']).optional().default('contact'),
-  firstName: z.string().trim().min(1).max(80),
-  email: z.string().trim().toLowerCase().email().max(254),
-  phone: z.string().trim().max(40).optional().default(''),
-  subject: z.string().trim().max(120).optional().default(''),
-  message: z.string().trim().max(3000).optional().default(''),
-  status: z.enum(['association', 'societe', 'artiste', 'aucun', '']).optional().default(''),
-  projectType: z
-    .enum(['production', 'clip-video', 'documentaire', 'spectacle', 'structuration', 'autre', ''])
-    .optional()
-    .default(''),
-  budget: z.enum(['moins10', '10a50', 'plus50', '']).optional().default(''),
-  website: z.string().trim().max(200).optional().default(''),
-})
-
-type ContactPayload = z.infer<typeof contactPayloadSchema>
+const defaultFromEmail = `Dossier Studio <${fallbackContactEmail}>`
 const emailTheme = {
   black: '#111111',
   ink: '#F3F1EA',
@@ -43,10 +31,6 @@ const emailTheme = {
 
 function clean(value?: string) {
   return typeof value === 'string' ? value.trim() : ''
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return Boolean(value && typeof value === 'object' && !Array.isArray(value))
 }
 
 function escapeHtml(value: string) {
@@ -444,68 +428,26 @@ function priorityTag(priority: string) {
 }
 
 export async function POST(request: Request) {
-  const contentType = request.headers.get('content-type') || ''
+  const payload = (await request.json().catch(() => null)) as ContactPayload | null
 
-  if (!contentType.toLowerCase().includes('application/json')) {
-    return NextResponse.json(
-      { ok: false, error: 'Format de requête invalide.' },
-      { status: 415 }
-    )
-  }
-
-  const contentLength = Number(request.headers.get('content-length') || 0)
-
-  if (contentLength > maxPayloadBytes) {
-    return NextResponse.json(
-      { ok: false, error: 'La demande est trop longue. Merci de raccourcir le message.' },
-      { status: 413 }
-    )
-  }
-
-  const clientIp = getClientIp(request)
-  const rateLimit = checkRateLimit({
-    key: `contact:${clientIp}`,
-    limit: contactRateLimit.limit,
-    windowMs: contactRateLimit.windowMs,
-  })
-
-  if (!rateLimit.allowed) {
-    return NextResponse.json(
-      { ok: false, error: 'Trop de tentatives. Merci de réessayer dans quelques minutes.' },
-      {
-        status: 429,
-        headers: {
-          'Retry-After': String(rateLimit.retryAfter),
-          'X-RateLimit-Limit': String(contactRateLimit.limit),
-          'X-RateLimit-Remaining': '0',
-        },
-      }
-    )
-  }
-
-  const rawPayload = await request.json().catch(() => null)
-
-  if (!isRecord(rawPayload)) {
+  if (!payload) {
     return NextResponse.json({ ok: false, error: 'Payload invalide.' }, { status: 400 })
   }
 
-  if (typeof rawPayload.website === 'string' && clean(rawPayload.website)) {
+  if (clean(payload.website)) {
     return NextResponse.json({ ok: true })
   }
 
-  const validation = contactPayloadSchema.safeParse(rawPayload)
-
-  if (!validation.success) {
-    return NextResponse.json(
-      { ok: false, error: 'Certains champs sont invalides ou trop longs.' },
-      { status: 400 }
-    )
-  }
-
-  const payload = validation.data
   const normalized = normalizePayload(payload)
   const firstName = normalized.firstName
   const email = normalized.email
+
+  if (!firstName || !email || !email.includes('@')) {
+    return NextResponse.json(
+      { ok: false, error: 'Prénom et email valide requis.' },
+      { status: 400 }
+    )
+  }
 
   const apiKey = process.env.RESEND_API_KEY
   const from = process.env.RESEND_FROM_EMAIL || defaultFromEmail
@@ -515,12 +457,10 @@ export async function POST(request: Request) {
   const subject = clean(payload.subject) || buildSubject(normalized)
 
   if (!apiKey) {
-    console.error('Contact form email provider is not configured')
-
     return NextResponse.json(
       {
         ok: false,
-        error: `L'envoi n'a pas abouti pour le moment. Tu peux écrire directement à ${contactEmail}.`,
+        error: 'RESEND_API_KEY manquante dans les variables d’environnement.',
       },
       { status: 500 }
     )

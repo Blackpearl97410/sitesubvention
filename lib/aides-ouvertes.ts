@@ -107,23 +107,10 @@ function absoluteUrl(url: string) {
 
 function inferOrganism(text: string) {
   const upper = text.toUpperCase()
-  const organisms = [
-    ['LE FAIR', 'Le FAIR'],
-    ['CNM', 'CNM'],
-    ['SACEM', 'SACEM'],
-    ['ADAMI', 'ADAMI'],
-    ['SPEDIDAM', 'SPEDIDAM'],
-    ['SCPP', 'SCPP'],
-    ['SPPF', 'SPPF'],
-    ['FONPEPS', 'FONPEPS'],
-    ['SACD', 'SACD'],
-    ['RÉGION', 'Région'],
-    ['REGION', 'Région'],
-    ['DAC', 'DAC'],
-  ] as const
-  const found = organisms.find(([needle]) => upper.includes(needle))
+  const organisms = ['CNM', 'SACEM', 'ADAMI', 'SPEDIDAM', 'SCPP', 'SPPF', 'FONPEPS', 'SACD', 'RÉGION', 'REGION', 'DAC']
+  const found = organisms.find((organism) => upper.includes(organism))
   if (!found) return 'Organisme à vérifier'
-  return found[1]
+  return found === 'REGION' ? 'Région' : found
 }
 
 function includesAny(text: string, needles: string[]) {
@@ -250,7 +237,7 @@ async function scrapeMonProjetMusique() {
     })
   )
 
-  return items.filter((item) => item.title.length > 5).slice(0, 12)
+  return items.filter((item) => item.title.length > 5).slice(0, 9)
 }
 
 export async function getAidesOuvertes(): Promise<AidesOuvertesResponse> {

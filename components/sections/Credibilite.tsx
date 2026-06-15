@@ -52,12 +52,12 @@ export default function Credibilite() {
 
   return (
     <section style={{ borderBottom: '2px solid var(--black)' }}>
-      <Track name="Résultats" type="Références" armed hideLabel contentClassName="!p-0 !gap-0">
+      <Track name="Preuves" type="Chiffres réels" armed contentClassName="credibility-stats-track !p-0 !gap-0">
         <StaggerGroup className="contents" viewportMargin="-40px" stagger={0.07}>
           {creds.map((c, i) => (
             <StaggerItem
               key={i}
-              className="flex-1 flex flex-col justify-center px-8 py-6 border-r border-rule last:border-r-0"
+              className="credibility-stat flex-1 flex flex-col justify-center px-8 py-6 border-r border-rule last:border-r-0"
               variant="revealSoft"
               transition={{ duration: 0.45 }}
             >
@@ -76,7 +76,7 @@ export default function Credibilite() {
         </StaggerGroup>
       </Track>
 
-      <Track name="Guichets" type="Aides travaillées" hideLabel contentClassName="!px-8 !py-6 !gap-5 !flex-col !items-start">
+      <Track name="Guichets" type="Aides travaillées" contentClassName="!px-8 !py-6 !gap-5 !flex-col !items-start">
         <Reveal trigger="view" variant="fadeOnly" className="w-full">
           <div className="flex w-full flex-col gap-4">
             <div className="flex items-center gap-3">

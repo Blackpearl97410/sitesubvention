@@ -17,6 +17,8 @@ const steps = [
     title: 'On identifie les aides activables.',
     type: 'Cadrage',
     text: "On part de ton projet, de ta structure, de ton calendrier et de tes pièces disponibles. L'objectif est de distinguer les dispositifs crédibles des fausses pistes, puis de choisir le bon angle de dossier.",
+    output: 'Aides prioritaires, niveau de potentiel, prochaines actions.',
+    duration: '20 min à 1 session',
   },
   {
     id: '02',
@@ -24,6 +26,8 @@ const steps = [
     title: 'Je transforme ton projet en dossier finançable.',
     type: 'Dossier et budget',
     text: "Je structure l'argumentaire, clarifie les objectifs, rends le budget cohérent et adapte le langage au guichet ciblé. Tu fournis les éléments factuels et tu valides les orientations clés.",
+    output: 'Argumentaire, budget, pièces et dossier prêts à déposer.',
+    duration: '1 à 3 semaines par dossier',
   },
   {
     id: '03',
@@ -31,6 +35,8 @@ const steps = [
     title: 'On sécurise le dépôt et la suite.',
     type: 'Dépôt et suivi',
     text: "Je prépare les éléments de dépôt, contrôle les pièces, traite les demandes complémentaires et analyse la réponse. Si le dossier est accepté, on anticipe les obligations et les prochains guichets.",
+    output: 'Dépôt propre, relances suivies, suite clarifiée.',
+    duration: 'Jusqu’à la réponse',
   },
 ]
 
@@ -55,7 +61,7 @@ export default function MethodePageContent() {
       <Ruler label="Comment ça fonctionne" playheadDuration={20} hideLabel />
 
       <Track name="Méthode" type="Process d'accompagnement" armed hideLabel contentClassName="!items-start !px-12 !py-16">
-        <div className="relative grid w-full gap-10 overflow-hidden">
+        <div className="relative grid w-full gap-10 overflow-hidden lg:grid-cols-[minmax(0,1fr)_340px]">
           <BackgroundGradientAnimation
             interactive={false}
             size="74%"
@@ -88,6 +94,13 @@ export default function MethodePageContent() {
             </p>
           </Reveal>
 
+          <Reveal trigger="load" variant="revealRight" delay={0.08} className="relative z-10 border-l border-rule-dark pl-8 pt-1">
+            <p className="mb-3 font-mono text-[0.6875rem] tracking-[0.14em] uppercase text-dim">Promesse</p>
+            <p className="font-body text-[1rem] leading-[1.85] text-soft">
+              Tu restes sur les arbitrages et la matière projet. Je prends la partie chronophage,
+              technique et rédactionnelle.
+            </p>
+          </Reveal>
         </div>
       </Track>
 
@@ -102,7 +115,7 @@ export default function MethodePageContent() {
               contentClassName="!items-stretch !gap-0 !px-0 !py-0"
             >
               <motion.div
-                className="grid w-full"
+                className="grid w-full lg:grid-cols-[minmax(0,1fr)_280px]"
                 whileHover={{ y: -3 }}
                 transition={{ duration: motionTiming.fastDuration, ease: motionTiming.ease }}
               >
@@ -119,6 +132,18 @@ export default function MethodePageContent() {
                   <p className="max-w-[760px] font-body text-[1rem] leading-[1.9] text-soft">{step.text}</p>
                 </div>
 
+                <div
+                  className="border-l border-rule px-10 py-10"
+                  style={{ background: 'linear-gradient(180deg, rgba(33, 33, 31, 0.96), rgba(26, 26, 24, 0.96))' }}
+                >
+                  <p className="mb-3 font-mono text-[0.6875rem] tracking-[0.14em] uppercase text-dim">
+                    Sortie attendue
+                  </p>
+                  <p className="font-body text-[0.96rem] leading-[1.75] text-soft">{step.output}</p>
+                  <p className="mt-6 font-mono text-[0.6875rem] tracking-[0.14em] uppercase text-dim">
+                    {step.duration}
+                  </p>
+                </div>
               </motion.div>
             </Track>
           </StaggerItem>

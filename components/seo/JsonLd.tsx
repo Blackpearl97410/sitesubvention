@@ -1,3 +1,4 @@
+import Script from 'next/script'
 import { dispositifList } from '@/lib/dispositifs'
 import { absoluteUrl, siteConfig } from '@/lib/seo'
 
@@ -110,7 +111,7 @@ export default function JsonLd() {
   }
 
   return (
-    <script
+    <Script
       id="json-ld"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

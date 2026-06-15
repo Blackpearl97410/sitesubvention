@@ -14,8 +14,8 @@ Ces valeurs sont aussi déclarées dans `netlify.toml`.
 - `NEXT_PUBLIC_SITE_URL` : `https://dossier-studio.fr`
 - `RESEND_API_KEY` : clé API Resend utilisée par le formulaire de contact.
 - `RESEND_FROM_EMAIL` : adresse expediteur verifiee dans Resend, au format `Nom <email@domaine.fr>`.
-- `CONTACT_TO_EMAIL` : `unisonore@gmail.com`
-- `PUBLIC_CONTACT_EMAIL` : `contact@dossier-studio.fr`
+- `CONTACT_TO_EMAIL` : adresse de reception des demandes.
+- `PUBLIC_CONTACT_EMAIL` : adresse publique affichee sur le site.
 - `RESEND_AUTO_REPLY` : `true`
 
 ## DNS mail à créer dans Netlify

@@ -95,7 +95,7 @@ export default function Hero() {
 
       <StaggerGroup delayChildren={0.08}>
         <StaggerItem>
-          <Track name="Projet" type="Aides possibles" armed contentClassName="!min-h-[500px] !items-stretch !px-5 !py-12 md:!min-h-[380px] md:!px-12 md:!py-18">
+          <Track name="Promesse" type="Aides non demandées" armed contentClassName="!min-h-[500px] !items-stretch !px-5 !py-12 md:!min-h-[380px] md:!px-12 md:!py-18">
             <div className="relative grid w-full gap-10 overflow-hidden lg:grid-cols-[minmax(0,1fr)_260px] lg:items-end">
               <div
                 className="pointer-events-none absolute inset-y-0 right-0 w-[56%] opacity-70"
@@ -131,12 +131,11 @@ export default function Hero() {
                     <>que tu ne demandes <span className="text-accent">plus.</span></>,
                   ]}
                 />
-                <div
-                  aria-hidden="true"
+                <h1
                   className="font-cond text-[3.15rem] font-black uppercase leading-[0.86] tracking-[-0.02em] text-black md:hidden"
                 >
                   Tu es éligible à des aides que tu ne demandes <span className="text-accent">plus.</span>
-                </div>
+                </h1>
               </Parallax>
 
               <Reveal
@@ -187,7 +186,7 @@ export default function Hero() {
         </StaggerItem>
 
         <StaggerItem>
-          <Track name="Potentiel" type="Financement" armed contentClassName="!flex-col !items-start !gap-7 !px-5 !py-10 md:!flex-row md:!gap-16 md:!px-12 md:!py-12">
+          <Track name="Manque à gagner" type="Aides non demandées" armed contentClassName="!flex-col !items-start !gap-7 !px-5 !py-10 md:!flex-row md:!gap-16 md:!px-12 md:!py-12">
             <Parallax target={sectionRef} offset={16} className="pt-4 relative before:absolute before:top-0 before:left-0 before:w-16 before:h-0.5 before:bg-accent flex-shrink-0">
               <p className="font-mono text-[0.4rem] tracking-[0.18em] uppercase text-accent mb-4">
                 Aides non demandées
@@ -216,17 +215,26 @@ export default function Hero() {
               transition={{ duration: motionTiming.fastDuration, ease: motionTiming.ease }}
             >
               <LiquidGlassButton href="/diagnostic" warm size="lg" contentClassName="text-white">
-                <RollingText text="Diagnostic gratuit" animateOnHover={false} />
+                <RollingText text="Parlons de ton projet" animateOnHover={false} />
               </LiquidGlassButton>
             </motion.div>
           </Magnetic>
-          <p className="font-body text-soft text-[0.92rem] leading-[1.75] max-w-[420px]">
-            Premier tri gratuit : aides crédibles, niveau d&apos;effort et prochaine échéance.
-          </p>
+          <Magnetic strength={10}>
+            <motion.div
+              className="border border-rule-dark"
+              style={{ background: 'var(--surface-2)' }}
+              whileHover={{ y: -2, borderColor: 'var(--accent)', backgroundColor: 'rgba(200,82,50,0.08)', boxShadow: '0 18px 40px rgba(0,0,0,0.18)' }}
+              transition={{ duration: motionTiming.fastDuration, ease: motionTiming.ease }}
+            >
+              <Link href="/comment-ca-fonctionne" className="font-cond font-semibold text-[0.5625rem] tracking-[0.18em] uppercase text-soft px-6 py-4 transition-colors inline-flex hover:text-black">
+                <RollingText text="Voir comment ça fonctionne →" animateOnHover={false} />
+              </Link>
+            </motion.div>
+          </Magnetic>
           <div className="flex items-center gap-2 md:ml-auto">
             <span className="w-[6px] h-[6px] rounded-full bg-accent" style={{ animation: 'pulse-soft 2.5s ease-in-out infinite' }} />
             <span className="font-mono text-[0.6875rem] tracking-[0.14em] uppercase text-dim">
-              7 créneaux diagnostic ouverts ce mois-ci · {territoryLabel}
+              Disponible · {territoryLabel}
             </span>
           </div>
         </Track>
