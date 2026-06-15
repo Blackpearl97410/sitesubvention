@@ -13,7 +13,7 @@ Ces valeurs sont aussi déclarées dans `netlify.toml`.
 
 - `NEXT_PUBLIC_SITE_URL` : `https://dossier-studio.fr`
 - `RESEND_API_KEY` : clé API Resend utilisée par le formulaire de contact.
-- `RESEND_FROM_EMAIL` : `Dossier Studio <contact@dossier-studio.fr>`
+- `RESEND_FROM_EMAIL` : adresse expediteur verifiee dans Resend, au format `Nom <email@domaine.fr>`.
 - `CONTACT_TO_EMAIL` : `unisonore@gmail.com`
 - `PUBLIC_CONTACT_EMAIL` : `contact@dossier-studio.fr`
 - `RESEND_AUTO_REPLY` : `true`
