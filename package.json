@@ -7,11 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "fetch:aides": "node scripts/fetch-aides-ouvertes.mjs",
-    "client:token": "node scripts/create-client-access-token.mjs"
+    "fetch:aides": "node scripts/fetch-aides-ouvertes.mjs"
   },
   "dependencies": {
-    "@libsql/client": "^0.17.3",
     "@splinetool/react-spline": "^2.2.6",
     "@splinetool/runtime": "^1.5.5",
     "clsx": "^2.1.1",
