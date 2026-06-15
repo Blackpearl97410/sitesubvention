@@ -12,7 +12,7 @@ export default function Parallax({
   children: ReactNode
   className?: string
   offset?: number
-  target: RefObject<HTMLElement>
+  target: RefObject<HTMLElement | null>
 }) {
   const { scrollYProgress } = useScroll({
     target,

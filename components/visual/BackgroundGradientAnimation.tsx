@@ -38,7 +38,7 @@ export function BackgroundGradientAnimation({
   containerClassName,
 }: BackgroundGradientAnimationProps) {
   const interactiveRef = useRef<HTMLDivElement>(null)
-  const frameRef = useRef<number>()
+  const frameRef = useRef<number | null>(null)
   const current = useRef({ x: 0, y: 0 })
   const target = useRef({ x: 0, y: 0 })
   const [isSafari, setIsSafari] = useState(false)
